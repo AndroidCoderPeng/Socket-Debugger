@@ -1,13 +1,93 @@
-﻿namespace Socket_Debugger
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Documents;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+
+namespace Socket_Debugger
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow
     {
+        private readonly string[] _itemImages =
+        {
+            "pack://application:,,,/Resource/IMG_TCP.png", "pack://application:,,,/Resource/IMG_TCP.png",
+            "pack://application:,,,/Resource/IMG_TCP.png", "pack://application:,,,/Resource/IMG_TCP.png",
+            "pack://application:,,,/Resource/IMG_TCP.png", "pack://application:,,,/Resource/IMG_TCP.png"
+        };
+
+        private readonly string[] _itemNames = {"TCP客户端", "TCP服务端", "UDP客户端", "UDP服务端", "WebSocket客户端", "WebSocket服务端"};
+
         public MainWindow()
         {
             InitializeComponent();
+
+            //设置左边ListView背景和数据
+            SetupLeftListView();
+
+            //右边顶部Tip
+            TipGrid.Background = new SolidColorBrush(Color.FromRgb(244, 238, 238));
+        }
+
+        private void SetupLeftListView()
+        {
+            var brush = new LinearGradientBrush();
+            brush.GradientStops.Add(new GradientStop
+            {
+                Offset = 0.20,
+                Color = Color.FromRgb(232, 213, 209)
+            });
+            brush.GradientStops.Add(new GradientStop
+            {
+                Offset = 0.80,
+                Color = Color.FromRgb(227, 208, 227)
+            });
+            FirstListView.Background = brush;
+            //绑定数据
+            // var dataObj = new ObservableCollection<object>();
+            // for (var i = 0; i < _itemNames.Length; i++)
+            // {
+            //     dataObj.Add(new
+            //     {
+            //         Title = _itemNames[i]
+            //     });
+            // }
+            //
+            // FirstListView.DataContext = dataObj;
+        }
+    }
+
+    public class Item : INotifyPropertyChanged
+    {
+        public string ImageUrl
+        {
+            get { return ImageUrl; }
+            set
+            {
+                ImageUrl = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("ImageUrl"));
+            }
+        }
+
+        public string ItemName
+        {
+            get { return ItemName; }
+            set
+            {
+                ItemName = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("ItemName"));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            PropertyChanged?.Invoke(this, e);
         }
     }
 }
