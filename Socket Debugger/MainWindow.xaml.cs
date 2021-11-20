@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Documents;
+﻿using System.ComponentModel;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace Socket_Debugger
 {
@@ -22,6 +17,8 @@ namespace Socket_Debugger
 
         private readonly string[] _itemNames = {"TCP客户端", "TCP服务端", "UDP客户端", "UDP服务端", "WebSocket客户端", "WebSocket服务端"};
 
+        private readonly Color _topBackground = Color.FromRgb(244, 238, 238);
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,7 +27,11 @@ namespace Socket_Debugger
             SetupLeftListView();
 
             //右边顶部Tip
-            TipGrid.Background = new SolidColorBrush(Color.FromRgb(244, 238, 238));
+            TopDockPanel.Background = new SolidColorBrush(_topBackground);
+            ServerLabel.Background = new SolidColorBrush(_topBackground);
+            ServerLabel.BorderBrush = new SolidColorBrush(_topBackground);
+            HostLabel.Background = new SolidColorBrush(_topBackground);
+            HostLabel.BorderBrush = new SolidColorBrush(_topBackground);
         }
 
         private void SetupLeftListView()
