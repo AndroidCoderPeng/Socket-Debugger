@@ -12,9 +12,6 @@ namespace Socket_Debugger
     /// </summary>
     public partial class MainWindow
     {
-        // pack://application:,,,/ReferencedAssembly;component/引用程序集下图片的相对路径 。
-        // ①路径中：ReferencedAssembly为图片资源所在的程序集，一般为当前项目名称。
-        // ②component/后面为引用程序集下图片资源的相对路径。
         private readonly string[] _itemImages =
         {
             @"Resources/Tcp.png",
