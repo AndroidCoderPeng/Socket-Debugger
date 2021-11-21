@@ -12,14 +12,32 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="5*" />
         </Grid.ColumnDefinitions>
+        <!--左边功能列表-->
         <ListView Grid.Column="0" Name="FirstListView" />
-        <ListView Grid.Column="1" Name="SecondListView" />
+        <!--中间用户自定义功能列表-->
+        <DockPanel Grid.Column="1" LastChildFill="true">
+            <Grid DockPanel.Dock="Bottom" Height="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Visibility="Hidden" />
+                <Button Grid.Column="1" Content="+" FontWeight="Bold" Name="AddButton" Background="White"
+                        HorizontalAlignment="Right" />
+                <Button Grid.Column="2" Content="-" FontWeight="Bold" Name="DelButton" Background="White"
+                        HorizontalAlignment="Right" />
+            </Grid>
+            <ListView DockPanel.Dock="Top" Background="White" Name="SecondListView" />
+        </DockPanel>
+        <!--右边TCP/UDP等通信界面-->
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
-                <RowDefinition Height="5*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="5.5*" />
+                <RowDefinition Height="1.5*" />
             </Grid.RowDefinitions>
+            <!--顶部IP等配置信息-->
             <Grid Grid.Row="0" Name="TopDockPanel">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -37,19 +55,31 @@
                        Foreground="Black" FontWeight="Bold" FontSize="16" Content="服务器" />
                 <Label Grid.Row="1" Grid.Column="0" Name="HostLabel" Content="111.198.10.15:12208" />
 
-                <CheckBox Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Margin="10 ,0,0,0" Content="未连接" />
+                <RadioButton Grid.Row="3" Grid.Column="0" IsChecked="True" HorizontalAlignment="Left"
+                             Margin="10 ,0,0,0" Content="已连接" />
 
                 <Button Grid.Row="0" Grid.Column="2" Name="EditButton" HorizontalAlignment="Right" Margin="0,5,5,0"
                         Foreground="Black" Content="编辑" />
                 <Button Grid.Row="1" Grid.Column="2" Name="ConnectButton" HorizontalAlignment="Right" Margin="0,5,5,0"
                         Foreground="Black" Content="连接" />
-                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Height="18" Name="EmptyButton"
-                        Visibility="Hidden" />
+                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Height="18" Visibility="Hidden" />
                 <Button Grid.Row="3" Grid.Column="2" Name="ClearButton" Margin="0,0,5,5"
                         Foreground="Black" Content="清空消息" />
             </Grid>
+            <!--中间通信界面-->
             <DockPanel Grid.Row="1" />
-            <DockPanel Grid.Row="2" />
+            <!--底部用户通信输入栏-->
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="3*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Name="SelectPanel" Orientation="Horizontal">
+                    <RadioButton IsChecked="True" Content="文本" Margin="10,0,0,0" />
+                    <RadioButton Content="16进制" Margin="20,0,0,0" />
+                </StackPanel>
+                <TextBox Grid.Row="1" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" />
+            </Grid>
         </Grid>
     </Grid>
 </Window>

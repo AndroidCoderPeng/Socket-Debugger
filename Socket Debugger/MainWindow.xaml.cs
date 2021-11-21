@@ -26,12 +26,19 @@ namespace Socket_Debugger
             //设置左边ListView背景和数据
             SetupLeftListView();
 
-            //右边顶部Tip
+            //中间底部按钮
+            AddButton.BorderBrush = new SolidColorBrush(Colors.White);
+            DelButton.BorderBrush = new SolidColorBrush(Colors.White);
+
+            //右边顶部Panel
             TopDockPanel.Background = new SolidColorBrush(_topBackground);
             ServerLabel.Background = new SolidColorBrush(_topBackground);
             ServerLabel.BorderBrush = new SolidColorBrush(_topBackground);
             HostLabel.Background = new SolidColorBrush(_topBackground);
             HostLabel.BorderBrush = new SolidColorBrush(_topBackground);
+
+            //右边底部SelectPanel
+            SelectPanel.Background = new SolidColorBrush(Color.FromRgb(236, 236, 236));
         }
 
         private void SetupLeftListView()
