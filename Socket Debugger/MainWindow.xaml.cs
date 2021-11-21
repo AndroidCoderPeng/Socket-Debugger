@@ -1,5 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Socket_Debugger
 {
@@ -8,11 +12,17 @@ namespace Socket_Debugger
     /// </summary>
     public partial class MainWindow
     {
+        // pack://application:,,,/ReferencedAssembly;component/引用程序集下图片的相对路径 。
+        // ①路径中：ReferencedAssembly为图片资源所在的程序集，一般为当前项目名称。
+        // ②component/后面为引用程序集下图片资源的相对路径。
         private readonly string[] _itemImages =
         {
-            "pack://application:,,,/Resource/IMG_TCP.png", "pack://application:,,,/Resource/IMG_TCP.png",
-            "pack://application:,,,/Resource/IMG_TCP.png", "pack://application:,,,/Resource/IMG_TCP.png",
-            "pack://application:,,,/Resource/IMG_TCP.png", "pack://application:,,,/Resource/IMG_TCP.png"
+            @"Resources/Tcp.png",
+            @"Resources/Tcp.png",
+            @"Resources/Udp.png",
+            @"Resources/Udp.png",
+            @"Resources/WebSocket.png",
+            @"Resources/WebSocket.png"
         };
 
         private readonly string[] _itemNames = {"TCP客户端", "TCP服务端", "UDP客户端", "UDP服务端", "WebSocket客户端", "WebSocket服务端"};
@@ -23,27 +33,23 @@ namespace Socket_Debugger
         {
             InitializeComponent();
 
-            //设置左边ListView背景和数据
-            SetupLeftListView();
-
             //中间底部按钮
             AddButton.BorderBrush = new SolidColorBrush(Colors.White);
             DelButton.BorderBrush = new SolidColorBrush(Colors.White);
 
             //右边顶部Panel
             TopDockPanel.Background = new SolidColorBrush(_topBackground);
-            ServerLabel.Background = new SolidColorBrush(_topBackground);
-            ServerLabel.BorderBrush = new SolidColorBrush(_topBackground);
-            HostLabel.Background = new SolidColorBrush(_topBackground);
-            HostLabel.BorderBrush = new SolidColorBrush(_topBackground);
 
             //右边底部SelectPanel
             SelectPanel.Background = new SolidColorBrush(Color.FromRgb(236, 236, 236));
+
+            //设置左边ListView背景和数据
+            SetupLeftListView();
         }
 
         private void SetupLeftListView()
         {
-            var brush = new LinearGradientBrush();
+            LinearGradientBrush brush = new LinearGradientBrush();
             brush.GradientStops.Add(new GradientStop
             {
                 Offset = 0.20,
@@ -56,46 +62,24 @@ namespace Socket_Debugger
             });
             FirstListView.Background = brush;
             //绑定数据
-            // var dataObj = new ObservableCollection<object>();
-            // for (var i = 0; i < _itemNames.Length; i++)
-            // {
-            //     dataObj.Add(new
-            //     {
-            //         Title = _itemNames[i]
-            //     });
-            // }
-            //
-            // FirstListView.DataContext = dataObj;
-        }
-    }
-
-    public class Item : INotifyPropertyChanged
-    {
-        public string ImageUrl
-        {
-            get { return ImageUrl; }
-            set
+            for (int i = 0; i < _itemNames.Length; i++)
             {
-                ImageUrl = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("ImageUrl"));
+                ItemInfoCollection.Add(new ItemInfo()
+                {
+                    ItemImage = new BitmapImage(new Uri(_itemImages[i], UriKind.Relative)),
+                    ItemTitle = _itemNames[i]
+                });
             }
+
+            FirstListView.DataContext = ItemInfoCollection;
         }
 
-        public string ItemName
-        {
-            get { return ItemName; }
-            set
-            {
-                ItemName = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("ItemName"));
-            }
-        }
+        private ObservableCollection<ItemInfo> ItemInfoCollection { get; set; } = new ObservableCollection<ItemInfo>();
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(PropertyChangedEventArgs e)
+        public class ItemInfo
         {
-            PropertyChanged?.Invoke(this, e);
+            public BitmapImage ItemImage { get; set; }
+            public string ItemTitle { get; set; }
         }
     }
 }

@@ -5,15 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
-        Title="欢迎使用Socket Debugger" Height="600" Width="800">
+        Title="欢迎使用Socket Debugger" Height="600" Width="800" FontSize="18">
+
     <Grid Width="Auto" Height="Auto">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="5*" />
         </Grid.ColumnDefinitions>
+
         <!--左边功能列表-->
-        <ListView Grid.Column="0" Name="FirstListView" />
+        <ListBox Grid.Column="0" x:Name="FirstListView" ItemsSource="{Binding ItemInfoCollection}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Path=ItemImage }" />
+                        <TextBlock
+                            Text="{Binding  Path=ItemTitle}"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Foreground="Black"
+                            TextAlignment="Center" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <!--中间用户自定义功能列表-->
         <DockPanel Grid.Column="1" LastChildFill="true">
             <Grid DockPanel.Dock="Bottom" Height="Auto">
@@ -22,13 +38,30 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Visibility="Hidden" />
-                <Button Grid.Column="1" Content="+" FontWeight="Bold" Name="AddButton" Background="White"
-                        HorizontalAlignment="Right" />
-                <Button Grid.Column="2" Content="-" FontWeight="Bold" Name="DelButton" Background="White"
-                        HorizontalAlignment="Right" />
+                <Button
+                    Grid.Column="0"
+                    Visibility="Hidden" />
+
+                <Button
+                    Grid.Column="1"
+                    Content="+"
+                    FontWeight="Bold"
+                    Name="AddButton"
+                    Background="White"
+                    HorizontalAlignment="Right" />
+
+                <Button
+                    Grid.Column="2"
+                    Content="-"
+                    FontWeight="Bold"
+                    Name="DelButton"
+                    Background="White"
+                    HorizontalAlignment="Right" />
             </Grid>
-            <ListView DockPanel.Dock="Top" Background="White" Name="SecondListView" />
+            <ListView
+                DockPanel.Dock="Top"
+                Background="White"
+                Name="SecondListView" />
         </DockPanel>
         <!--右边TCP/UDP等通信界面-->
         <Grid Grid.Column="2">
@@ -51,20 +84,66 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" Name="ServerLabel" HorizontalAlignment="Left"
-                       Foreground="Black" FontWeight="Bold" FontSize="16" Content="服务器" />
-                <Label Grid.Row="1" Grid.Column="0" Name="HostLabel" Content="111.198.10.15:12208" />
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Name="ServerTextBlock"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="10 ,0,0,0"
+                    Foreground="Black"
+                    FontWeight="Bold"
+                    FontSize="15"
+                    Text="服务器" />
 
-                <RadioButton Grid.Row="3" Grid.Column="0" IsChecked="True" HorizontalAlignment="Left"
-                             Margin="10 ,0,0,0" Content="已连接" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Name="HostTextBlock"
+                    FontSize="13"
+                    Text="111.198.10.15:12208"
+                    Margin="10 ,0,0,0" VerticalAlignment="Top" />
 
-                <Button Grid.Row="0" Grid.Column="2" Name="EditButton" HorizontalAlignment="Right" Margin="0,5,5,0"
-                        Foreground="Black" Content="编辑" />
-                <Button Grid.Row="1" Grid.Column="2" Name="ConnectButton" HorizontalAlignment="Right" Margin="0,5,5,0"
-                        Foreground="Black" Content="连接" />
-                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Height="18" Visibility="Hidden" />
-                <Button Grid.Row="3" Grid.Column="2" Name="ClearButton" Margin="0,0,5,5"
-                        Foreground="Black" Content="清空消息" />
+                <RadioButton
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    IsChecked="True"
+                    HorizontalAlignment="Left"
+                    Margin="10 ,0,0,0"
+                    Content="已连接" />
+
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Name="EditButton"
+                    HorizontalAlignment="Right"
+                    Margin="0,5,5,0"
+                    Foreground="Black"
+                    Content="编辑" />
+
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Name="ConnectButton"
+                    HorizontalAlignment="Right"
+                    Margin="0,5,5,0"
+                    Foreground="Black"
+                    Content="连接" />
+
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Height="18"
+                    Visibility="Hidden" />
+
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Name="ClearButton"
+                    Margin="0,0,5,5"
+                    Foreground="Black"
+                    Content="清空消息" />
             </Grid>
             <!--中间通信界面-->
             <DockPanel Grid.Row="1" />
@@ -75,10 +154,20 @@
                     <RowDefinition Height="3*" />
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Name="SelectPanel" Orientation="Horizontal">
-                    <RadioButton IsChecked="True" Content="文本" Margin="10,0,0,0" />
-                    <RadioButton Content="16进制" Margin="20,0,0,0" />
+                    <RadioButton
+                        IsChecked="True"
+                        Content="文本"
+                        Margin="10,0,0,0" />
+
+                    <RadioButton
+                        Content="16进制"
+                        Margin="20,0,0,0" />
                 </StackPanel>
-                <TextBox Grid.Row="1" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" />
+                <TextBox
+                    Grid.Row="1"
+                    TextWrapping="Wrap"
+                    AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Visible" />
             </Grid>
         </Grid>
     </Grid>
