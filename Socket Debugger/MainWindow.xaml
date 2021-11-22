@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
-        Title="欢迎使用Socket Debugger" Height="600" Width="800" FontSize="18">
+        Title="欢迎使用Socket Debugger" Height="600" Width="800" FontSize="18" WindowStartupLocation="CenterScreen">
 
     <Grid Width="Auto" Height="Auto">
         <Grid.ColumnDefinitions>
@@ -15,21 +15,32 @@
         </Grid.ColumnDefinitions>
 
         <!--左边功能列表-->
-        <ListBox Grid.Column="0" x:Name="FirstListView" ItemsSource="{Binding ItemInfoCollection}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Path=ItemImage }" />
-                        <TextBlock
-                            Text="{Binding  Path=ItemTitle}"
-                            FontSize="16"
-                            FontWeight="Bold"
-                            Foreground="Black"
-                            TextAlignment="Center" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <StackPanel Grid.Column="0" Orientation="Horizontal">
+            <StackPanel.Background>
+                <LinearGradientBrush>
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0.2" Color="#E8D5D1" />
+                        <GradientStop Offset="0.8" Color="#E3D0E3" />
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <ListBox x:Name="FirstListView" ItemsSource="{Binding ItemInfoCollection}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Path=ItemImage }" />
+                            <TextBlock
+                                Text="{Binding  Path=ItemTitle}"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="Black"
+                                TextAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
         <!--中间用户自定义功能列表-->
         <DockPanel Grid.Column="1" LastChildFill="true">
             <Grid DockPanel.Dock="Bottom" Height="Auto">
@@ -44,25 +55,29 @@
 
                 <Button
                     Grid.Column="1"
+                    x:Name="AddButton"
                     Content="+"
+                    BorderBrush="White"
                     FontWeight="Bold"
-                    Name="AddButton"
                     Background="White"
                     HorizontalAlignment="Right" />
 
                 <Button
                     Grid.Column="2"
+                    x:Name="DelButton"
                     Content="-"
+                    BorderBrush="White"
                     FontWeight="Bold"
-                    Name="DelButton"
                     Background="White"
                     HorizontalAlignment="Right" />
             </Grid>
+
             <ListView
                 DockPanel.Dock="Top"
-                Background="White"
-                Name="SecondListView" />
+                x:Name="SecondListView"
+                Background="White" />
         </DockPanel>
+
         <!--右边TCP/UDP等通信界面-->
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
@@ -71,7 +86,10 @@
                 <RowDefinition Height="1.5*" />
             </Grid.RowDefinitions>
             <!--顶部IP等配置信息-->
-            <Grid Grid.Row="0" Name="TopDockPanel">
+            <Grid Grid.Row="0" x:Name="TopDockPanel">
+                <Grid.Background>
+                    <SolidColorBrush Color="#F4EEEE" />
+                </Grid.Background>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -87,7 +105,7 @@
                 <TextBlock
                     Grid.Row="0"
                     Grid.Column="0"
-                    Name="ServerTextBlock"
+                    x:Name="ServerTextBlock"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Margin="10 ,0,0,0"
@@ -99,7 +117,7 @@
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="0"
-                    Name="HostTextBlock"
+                    x:Name="HostTextBlock"
                     FontSize="13"
                     Text="111.198.10.15:12208"
                     Margin="10 ,0,0,0" VerticalAlignment="Top" />
@@ -107,6 +125,7 @@
                 <RadioButton
                     Grid.Row="3"
                     Grid.Column="0"
+                    x:Name="StatusTextBlock"
                     IsChecked="True"
                     HorizontalAlignment="Left"
                     Margin="10 ,0,0,0"
@@ -115,7 +134,7 @@
                 <Button
                     Grid.Row="0"
                     Grid.Column="2"
-                    Name="EditButton"
+                    x:Name="EditButton"
                     HorizontalAlignment="Right"
                     Margin="0,5,5,0"
                     Foreground="Black"
@@ -124,7 +143,7 @@
                 <Button
                     Grid.Row="1"
                     Grid.Column="2"
-                    Name="ConnectButton"
+                    x:Name="ConnectButton"
                     HorizontalAlignment="Right"
                     Margin="0,5,5,0"
                     Foreground="Black"
@@ -140,26 +159,33 @@
                 <Button
                     Grid.Row="3"
                     Grid.Column="2"
-                    Name="ClearButton"
+                    x:Name="ClearButton"
                     Margin="0,0,5,5"
                     Foreground="Black"
                     Content="清空消息" />
             </Grid>
+
             <!--中间通信界面-->
             <DockPanel Grid.Row="1" />
+
             <!--底部用户通信输入栏-->
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*" />
                     <RowDefinition Height="3*" />
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Name="SelectPanel" Orientation="Horizontal">
+                <StackPanel Grid.Row="0" x:Name="SelectPanel" Orientation="Horizontal">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="#ECECEC" />
+                    </StackPanel.Background>
                     <RadioButton
+                        x:Name="TextRadioButton"
                         IsChecked="True"
                         Content="文本"
                         Margin="10,0,0,0" />
 
                     <RadioButton
+                        x:Name="HexRadioButton"
                         Content="16进制"
                         Margin="20,0,0,0" />
                 </StackPanel>
