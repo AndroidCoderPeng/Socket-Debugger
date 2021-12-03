@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
-        Title="欢迎使用Socket Debugger" Height="600" Width="800" FontSize="18" WindowStartupLocation="CenterScreen">
+        Title="Socket Debugger" Height="600" Width="800" FontSize="18" WindowStartupLocation="CenterScreen">
 
     <Grid Width="Auto" Height="Auto">
         <Grid.ColumnDefinitions>
@@ -72,10 +72,40 @@
                     HorizontalAlignment="Right" />
             </Grid>
 
-            <ListView
+            <Grid
                 DockPanel.Dock="Top"
-                x:Name="SecondListView"
-                Background="White" />
+                Background="White">
+
+                <ListView
+                    x:Name="SecondListView"
+                    Visibility="Collapsed" />
+
+                <StackPanel
+                    x:Name="EmptyPanel"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+
+                    <Image
+                        Width="Auto"
+                        Height="Auto"
+                        Source="Resources/EmptyImage.png"
+                        Visibility="Visible" />
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Margin="10,10,10,5"
+                        TextWrapping="Wrap"
+                        Text="没有已存在配置"
+                        FontSize="13" />
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Margin="10,5,10,5"
+                        TextWrapping="Wrap"
+                        Text="点击下方 + 按钮添加配置"
+                        FontSize="13" />
+                </StackPanel>
+            </Grid>
         </DockPanel>
 
         <!--右边TCP/UDP等通信界面-->
@@ -189,9 +219,12 @@
                         Content="16进制"
                         Margin="20,0,0,0" />
                 </StackPanel>
+
                 <TextBox
                     Grid.Row="1"
+                    VerticalContentAlignment="Top"
                     TextWrapping="Wrap"
+                    FontSize="13"
                     AcceptsReturn="True"
                     VerticalScrollBarVisibility="Visible" />
             </Grid>
