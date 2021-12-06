@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Media.Imaging;
 
@@ -38,6 +37,9 @@ namespace Socket_Debugger
             }
 
             FuncListView.ItemsSource = functionItems;
+            
+            //设置中间Panel数据
+            
         }
 
         public class FunctionItem

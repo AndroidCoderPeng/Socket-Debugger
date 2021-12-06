@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
 
         <!--左边功能列表-->
-        <ListView Grid.Column="0" x:Name="FuncListView" ItemsSource="FunctionItems">
+        <ListView Grid.Column="0" x:Name="FuncListView" Margin="0,-43,0,0" ItemsSource="F">
             <ListView.Background>
                 <LinearGradientBrush>
                     <LinearGradientBrush.GradientStops>
@@ -30,18 +30,12 @@
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="2*" />
-                                    </Grid.ColumnDefinitions>
-
+                                <StackPanel Margin="-13,-5,5,-5" Orientation="Horizontal">
                                     <Image
                                         Width="40"
                                         Height="40"
                                         Margin="0,0,10,0"
                                         Source="{Binding ItemImage}" />
-
                                     <TextBlock
                                         Grid.Column="1"
                                         FontSize="14"
@@ -49,8 +43,7 @@
                                         VerticalAlignment="Center"
                                         TextWrapping="Wrap"
                                         Text="{Binding ItemTitle}" />
-
-                                </Grid>
+                                </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
