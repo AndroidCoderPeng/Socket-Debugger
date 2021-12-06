@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Media.Imaging;
 
@@ -19,42 +20,31 @@ namespace Socket_Debugger
             @"Resources/WebSocket.png"
         };
 
-        private readonly string[] _itemNames = {"TCP客户端", "TCP服务端", "UDP客户端", "UDP服务端", "WebSocket客户端", "WebSocket服务端"};
-
-        private readonly ObservableCollection<FunctionItem> _functionItems = new ObservableCollection<FunctionItem>();
+        private readonly string[] _itemNames = {"TCP客户端", "TCP服务端", "UDP客户端", "UDP服务端", "WST客户端", "WST服务端"};
 
         public MainWindow()
         {
             InitializeComponent();
 
             //设置左边ListView数据
-            _functionItems.Add(new FunctionItem(new BitmapImage(new Uri(_itemImages[0], UriKind.Relative)),
-                _itemNames[0]));
-            _functionItems.Add(new FunctionItem(new BitmapImage(new Uri(_itemImages[1], UriKind.Relative)),
-                _itemNames[1]));
-            _functionItems.Add(new FunctionItem(new BitmapImage(new Uri(_itemImages[2], UriKind.Relative)),
-                _itemNames[2]));
-            _functionItems.Add(new FunctionItem(new BitmapImage(new Uri(_itemImages[3], UriKind.Relative)),
-                _itemNames[3]));
-            _functionItems.Add(new FunctionItem(new BitmapImage(new Uri(_itemImages[4], UriKind.Relative)),
-                _itemNames[4]));
-            _functionItems.Add(new FunctionItem(new BitmapImage(new Uri(_itemImages[5], UriKind.Relative)),
-                _itemNames[5]));
+            var functionItems = new ObservableCollection<FunctionItem>();
+            for (int i = 0; i < 6; i++)
+            {
+                functionItems.Add(new FunctionItem
+                {
+                    ItemImage = new BitmapImage(new Uri(_itemImages[i], UriKind.Relative)),
+                    ItemTitle = _itemNames[i]
+                });
+            }
 
-            FuncListView.ItemsSource = _functionItems;
+            FuncListView.ItemsSource = functionItems;
         }
 
         public class FunctionItem
         {
-            private BitmapImage ItemImage { get; set; }
+            public BitmapImage ItemImage { get; set; }
 
-            private string ItemTitle { get; set; }
-
-            public FunctionItem(BitmapImage itemImage, string itemTitle)
-            {
-                this.ItemImage = itemImage;
-                this.ItemTitle = itemTitle;
-            }
+            public string ItemTitle { get; set; }
         }
     }
 }

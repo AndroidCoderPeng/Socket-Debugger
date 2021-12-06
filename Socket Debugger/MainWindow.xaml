@@ -15,37 +15,48 @@
         </Grid.ColumnDefinitions>
 
         <!--左边功能列表-->
-        <Grid Grid.Column="0">
-            <ListView x:Name="FuncListView" VerticalContentAlignment="Top" ItemsSource="{Binding FunctionItem}">
-                <ListView.Background>
-                    <LinearGradientBrush>
-                        <LinearGradientBrush.GradientStops>
-                            <GradientStop Offset="0.2" Color="#E8D5D1" />
-                            <GradientStop Offset="0.8" Color="#E3D0E3" />
-                        </LinearGradientBrush.GradientStops>
-                    </LinearGradientBrush>
-                </ListView.Background>
+        <ListView Grid.Column="0" x:Name="FuncListView" ItemsSource="FunctionItems">
+            <ListView.Background>
+                <LinearGradientBrush>
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0.2" Color="#E8D5D1" />
+                        <GradientStop Offset="0.8" Color="#E3D0E3" />
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </ListView.Background>
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Ellipse Cursor="Hand"
-                                     Width="50"
-                                     Height="50">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding ItemImage}" />
-                                </Ellipse.Fill>
-                            </Ellipse>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
 
-                            <TextBlock
-                                FontSize="13"
-                                Foreground="Black"
-                                Text="{Binding ItemTitle}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
+                                    <Image
+                                        Width="40"
+                                        Height="40"
+                                        Margin="0,0,10,0"
+                                        Source="{Binding ItemImage}" />
+
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        FontSize="14"
+                                        Foreground="Black"
+                                        VerticalAlignment="Center"
+                                        TextWrapping="Wrap"
+                                        Text="{Binding ItemTitle}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
         <!--中间用户自定义功能列表-->
         <DockPanel Grid.Column="1" LastChildFill="true">
