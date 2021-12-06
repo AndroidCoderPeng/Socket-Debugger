@@ -15,31 +15,37 @@
         </Grid.ColumnDefinitions>
 
         <!--左边功能列表-->
-        <StackPanel Grid.Column="0" Orientation="Horizontal">
-            <StackPanel.Background>
-                <LinearGradientBrush>
-                    <LinearGradientBrush.GradientStops>
-                        <GradientStop Offset="0.2" Color="#E8D5D1" />
-                        <GradientStop Offset="0.8" Color="#E3D0E3" />
-                    </LinearGradientBrush.GradientStops>
-                </LinearGradientBrush>
-            </StackPanel.Background>
-            <ListBox x:Name="FirstListView" ItemsSource="{Binding ItemInfoCollection}">
-                <ListBox.ItemTemplate>
+        <Grid Grid.Column="0">
+            <ListView x:Name="FuncListView" VerticalContentAlignment="Top" ItemsSource="{Binding FunctionItem}">
+                <ListView.Background>
+                    <LinearGradientBrush>
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.2" Color="#E8D5D1" />
+                            <GradientStop Offset="0.8" Color="#E3D0E3" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </ListView.Background>
+
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding Path=ItemImage }" />
+                            <Ellipse Cursor="Hand"
+                                     Width="50"
+                                     Height="50">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding ItemImage}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+
                             <TextBlock
-                                Text="{Binding  Path=ItemTitle}"
-                                FontSize="16"
-                                FontWeight="Bold"
+                                FontSize="13"
                                 Foreground="Black"
-                                TextAlignment="Center" />
+                                Text="{Binding ItemTitle}" />
                         </StackPanel>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
 
         <!--中间用户自定义功能列表-->
         <DockPanel Grid.Column="1" LastChildFill="true">

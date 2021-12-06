@@ -21,29 +21,40 @@ namespace Socket_Debugger
 
         private readonly string[] _itemNames = {"TCP客户端", "TCP服务端", "UDP客户端", "UDP服务端", "WebSocket客户端", "WebSocket服务端"};
 
+        private readonly ObservableCollection<FunctionItem> _functionItems = new ObservableCollection<FunctionItem>();
+
         public MainWindow()
         {
             InitializeComponent();
 
             //设置左边ListView数据
-            for (int i = 0; i < _itemNames.Length; i++)
-            {
-                ItemInfoCollection.Add(new ItemInfo()
-                {
-                    ItemImage = new BitmapImage(new Uri(_itemImages[i], UriKind.Relative)),
-                    ItemTitle = _itemNames[i]
-                });
-            }
+            _functionItems.Add(new FunctionItem(new BitmapImage(new Uri(_itemImages[0], UriKind.Relative)),
+                _itemNames[0]));
+            _functionItems.Add(new FunctionItem(new BitmapImage(new Uri(_itemImages[1], UriKind.Relative)),
+                _itemNames[1]));
+            _functionItems.Add(new FunctionItem(new BitmapImage(new Uri(_itemImages[2], UriKind.Relative)),
+                _itemNames[2]));
+            _functionItems.Add(new FunctionItem(new BitmapImage(new Uri(_itemImages[3], UriKind.Relative)),
+                _itemNames[3]));
+            _functionItems.Add(new FunctionItem(new BitmapImage(new Uri(_itemImages[4], UriKind.Relative)),
+                _itemNames[4]));
+            _functionItems.Add(new FunctionItem(new BitmapImage(new Uri(_itemImages[5], UriKind.Relative)),
+                _itemNames[5]));
 
-            FirstListView.DataContext = ItemInfoCollection;
+            FuncListView.ItemsSource = _functionItems;
         }
 
-        private ObservableCollection<ItemInfo> ItemInfoCollection { get; set; } = new ObservableCollection<ItemInfo>();
-
-        public class ItemInfo
+        public class FunctionItem
         {
-            public BitmapImage ItemImage { get; set; }
-            public string ItemTitle { get; set; }
+            private BitmapImage ItemImage { get; set; }
+
+            private string ItemTitle { get; set; }
+
+            public FunctionItem(BitmapImage itemImage, string itemTitle)
+            {
+                this.ItemImage = itemImage;
+                this.ItemTitle = itemTitle;
+            }
         }
     }
 }
