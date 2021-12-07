@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\Net.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Image\Net.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AduSkin, Version=1.1.1.9, Culture=neutral, PublicKeyToken=null">
@@ -113,11 +113,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Computer.png" />
-    <Resource Include="Resources\Net.ico" />
-    <Resource Include="Resources\Tcp.png" />
-    <Resource Include="Resources\Udp.png" />
-    <Resource Include="Resources\WebSocket.png" />
+    <Resource Include="Resources\Image\Computer.png" />
+    <Resource Include="Resources\Image\Net.ico" />
+    <Resource Include="Resources\Image\Tcp.png" />
+    <Resource Include="Resources\Image\Udp.png" />
+    <Resource Include="Resources\Image\WebSocket.png" />
+    <Resource Include="Resources\Image\EmptyImage.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -130,9 +131,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\EmptyImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

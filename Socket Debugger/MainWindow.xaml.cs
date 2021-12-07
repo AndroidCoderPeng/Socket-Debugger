@@ -11,35 +11,34 @@ namespace Socket_Debugger
     {
         private readonly string[] _itemImages =
         {
-            @"Resources/Tcp.png",
-            @"Resources/Tcp.png",
-            @"Resources/Udp.png",
-            @"Resources/Udp.png",
-            @"Resources/WebSocket.png",
-            @"Resources/WebSocket.png"
+            @"Resources/Image/Tcp.png",
+            @"Resources/Image/Tcp.png",
+            @"Resources/Image/Udp.png",
+            @"Resources/Image/Udp.png",
+            @"Resources/Image/WebSocket.png",
+            @"Resources/Image/WebSocket.png"
         };
 
         private readonly string[] _itemNames = {"TCP客户端", "TCP服务端", "UDP客户端", "UDP服务端", "WST客户端", "WST服务端"};
+
+        private ObservableCollection<FunctionItem> FunctionItems { get; } = new ObservableCollection<FunctionItem>();
 
         public MainWindow()
         {
             InitializeComponent();
 
             //设置左边ListView数据
-            var functionItems = new ObservableCollection<FunctionItem>();
             for (int i = 0; i < 6; i++)
             {
-                functionItems.Add(new FunctionItem
+                FunctionItems.Add(new FunctionItem
                 {
                     ItemImage = new BitmapImage(new Uri(_itemImages[i], UriKind.Relative)),
                     ItemTitle = _itemNames[i]
                 });
             }
 
-            FuncListView.ItemsSource = functionItems;
-            
+            FuncListView.ItemsSource = FunctionItems;
             //设置中间Panel数据
-            
         }
 
         public class FunctionItem

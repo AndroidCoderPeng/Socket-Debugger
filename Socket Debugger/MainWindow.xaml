@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Socket_Debugger"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         Title="Socket Debugger" Height="600" Width="800" FontSize="18" WindowStartupLocation="CenterScreen">
@@ -15,15 +16,22 @@
         </Grid.ColumnDefinitions>
 
         <!--左边功能列表-->
-        <ListView Grid.Column="0" x:Name="FuncListView" Margin="0,-43,0,0" ItemsSource="F">
+        <ListView Grid.Column="0" x:Name="FuncListView" ItemsSource="F">
             <ListView.Background>
                 <LinearGradientBrush>
                     <LinearGradientBrush.GradientStops>
-                        <GradientStop Offset="0.2" Color="#E8D5D1" />
-                        <GradientStop Offset="0.8" Color="#E3D0E3" />
+                        <GradientStop Offset="0.3" Color="#E8D5D1" />
+                        <GradientStop Offset="0.7" Color="#E3D0E3" />
                     </LinearGradientBrush.GradientStops>
                 </LinearGradientBrush>
             </ListView.Background>
+
+            <!--去掉ListView顶部Header-->
+            <ListView.Resources>
+                <Style TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </ListView.Resources>
 
             <ListView.View>
                 <GridView>
@@ -98,7 +106,7 @@
                     <Image
                         Width="Auto"
                         Height="Auto"
-                        Source="Resources/EmptyImage.png"
+                        Source="Resources/Image/EmptyImage.png"
                         Visibility="Visible" />
 
                     <TextBlock
