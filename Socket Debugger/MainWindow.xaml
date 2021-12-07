@@ -243,8 +243,30 @@
                     VerticalContentAlignment="Top"
                     TextWrapping="Wrap"
                     FontSize="13"
+                    Padding="3"
                     AcceptsReturn="True"
-                    VerticalScrollBarVisibility="Visible" />
+                    VerticalScrollBarVisibility="Visible">
+
+                    <TextBox.Resources>
+                        <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.3" Stretch="None" AlignmentX="Left"
+                                     AlignmentY="Top">
+                            <VisualBrush.Visual>
+                                <!--必须设置Background，否则Padding无效-->
+                                <TextBlock Text="请输入要发送的数据" FontSize="13" Padding="3" Background="#00FFFFFF" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </TextBox.Resources>
+
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="">
+                                    <Setter Property="Background" Value="{StaticResource HintText}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
             </Grid>
         </Grid>
     </Grid>
