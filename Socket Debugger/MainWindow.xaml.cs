@@ -19,7 +19,7 @@ namespace Socket_Debugger
             @"Resources/Image/WebSocket.png"
         };
 
-        private readonly string[] _itemNames = {"TCP客户端", "TCP服务端", "UDP客户端", "UDP服务端", "WST客户端", "WST服务端"};
+        private readonly string[] _itemNames = { "TCP客户端", "TCP服务端", "UDP客户端", "UDP服务端", "WS客户端", "WS服务端" };
 
         private ObservableCollection<FunctionItem> FunctionItems { get; } = new ObservableCollection<FunctionItem>();
 
