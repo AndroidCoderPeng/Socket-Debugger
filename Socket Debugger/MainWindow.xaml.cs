@@ -49,17 +49,15 @@ namespace Socket_Debugger
             // 添加配置
             FunctionItem selectedItem = (FunctionItem) FuncListView.SelectedItem;
             AddConfigDialog addConfig = new AddConfigDialog(selectedItem.ItemTitle);
-            addConfig.sendMessage = RecevieResult;
+            addConfig.sendMessage = Receive_Result;
             addConfig.ShowDialog();
-            // Accept the dialog and return the dialog result
-            // this.DialogResult = true;
         }
 
-        public void RecevieResult(string value)
+        private static void Receive_Result(string value)
         {
             Debug.WriteLine(value);
         }
-        
+
         private void DelButton_Click(object sender, RoutedEventArgs e)
         {
         }
