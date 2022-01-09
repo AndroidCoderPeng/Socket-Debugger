@@ -10,7 +10,7 @@ namespace Socket_Debugger
         public AddConfigDialog(string itemTitle)
         {
             InitializeComponent();
-            connTypeTextBlock.Text = itemTitle;
+            ConnTypeTextBlock.Text = itemTitle;
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
@@ -20,7 +20,7 @@ namespace Socket_Debugger
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            string comment = commentTextBox.Text.Trim();
+            string comment = CommentTextBox.Text.Trim();
             if (!"".Equals(comment)) return;
             MessageBox.Show("备注不能为空");
             return;

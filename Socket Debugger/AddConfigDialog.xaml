@@ -39,7 +39,7 @@
                     Text="备注"
                     TextWrapping="Wrap" />
                 <TextBox
-                    x:Name="commentTextBox"
+                    x:Name="CommentTextBox"
                     Width="180"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
@@ -59,7 +59,7 @@
                     Text="类型"
                     TextWrapping="Wrap" />
                 <TextBlock
-                    x:Name="connTypeTextBlock"
+                    x:Name="ConnTypeTextBlock"
                     Canvas.Left="180"
                     Canvas.Top="75"
                     Margin="10,0,0,0"
@@ -80,7 +80,7 @@
                     Text="主机地址"
                     TextWrapping="Wrap" />
                 <TextBox
-                    x:Name="connHostTextBox"
+                    x:Name="ConnHostTextBox"
                     Width="180"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
@@ -100,7 +100,7 @@
                     Text="端口"
                     TextWrapping="Wrap" />
                 <TextBox
-                    x:Name="connPortTextBox"
+                    x:Name="ConnPortTextBox"
                     Width="180"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
@@ -120,14 +120,14 @@
                     Text="重复发送"
                     TextWrapping="Wrap" />
                 <TextBox
-                    x:Name="messageTextBox"
+                    x:Name="MessageTextBox"
                     Width="180"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     TextWrapping="Wrap" />
                 <CheckBox
-                    x:Name="reSendCheckBox"
+                    x:Name="ReSendCheckBox"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center" />
@@ -139,7 +139,7 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Center">
             <Button
-                x:Name="cancelButton"
+                x:Name="CancelButton"
                 Width="50"
                 Height="28"
                 HorizontalAlignment="Left"
@@ -147,7 +147,7 @@
                 Click="cancelButton_Click"
                 Content="取消" />
             <Button
-                x:Name="saveButton"
+                x:Name="SaveButton"
                 Width="50"
                 Height="28"
                 Margin="15,0,0,0"
