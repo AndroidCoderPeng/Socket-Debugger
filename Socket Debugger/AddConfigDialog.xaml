@@ -36,15 +36,14 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     FontWeight="Bold"
-                    Text="备注"
-                    TextWrapping="Wrap" />
+                    Text="备注" />
                 <TextBox
                     x:Name="CommentTextBox"
                     Width="180"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    TextWrapping="Wrap" />
+                    TextWrapping="NoWrap" />
             </StackPanel>
 
             <StackPanel
@@ -56,16 +55,15 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     FontWeight="Bold"
-                    Text="类型"
-                    TextWrapping="Wrap" />
+                    Text="类型" />
                 <TextBlock
                     x:Name="ConnTypeTextBlock"
                     Canvas.Left="180"
                     Canvas.Top="75"
-                    Margin="10,0,0,0"
+                    Margin="15,0,0,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    TextWrapping="Wrap" />
+                    TextWrapping="NoWrap" />
             </StackPanel>
 
             <StackPanel
@@ -77,15 +75,14 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     FontWeight="Bold"
-                    Text="主机地址"
-                    TextWrapping="Wrap" />
+                    Text="主机地址" />
                 <TextBox
                     x:Name="ConnHostTextBox"
                     Width="180"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    TextWrapping="Wrap" />
+                    TextWrapping="NoWrap" />
             </StackPanel>
 
             <StackPanel
@@ -97,15 +94,14 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     FontWeight="Bold"
-                    Text="端口"
-                    TextWrapping="Wrap" />
+                    Text="端口" />
                 <TextBox
                     x:Name="ConnPortTextBox"
                     Width="180"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    TextWrapping="Wrap" />
+                    TextWrapping="NoWrap" />
             </StackPanel>
 
             <StackPanel
@@ -117,15 +113,14 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     FontWeight="Bold"
-                    Text="重复发送"
-                    TextWrapping="Wrap" />
+                    Text="重复发送" />
                 <TextBox
                     x:Name="MessageTextBox"
                     Width="180"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
-                    TextWrapping="Wrap" />
+                    TextWrapping="NoWrap" />
                 <CheckBox
                     x:Name="ReSendCheckBox"
                     Margin="10,0,0,0"

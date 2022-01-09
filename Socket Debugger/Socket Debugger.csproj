@@ -62,6 +62,9 @@
       <HintPath>..\packages\HandyControl.3.2.0\lib\net472\HandyControl.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\DevelopmentTool\DLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
