@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace Socket_Debugger
@@ -19,7 +20,7 @@ namespace Socket_Debugger
             @"Resources/Image/WebSocket.png"
         };
 
-        private readonly string[] _itemNames = { "TCP客户端", "TCP服务端", "UDP客户端", "UDP服务端", "WS客户端", "WS服务端" };
+        private readonly string[] _itemNames = {"TCP客户端", "TCP服务端", "UDP客户端", "UDP服务端", "WS客户端", "WS服务端"};
 
         private ObservableCollection<FunctionItem> FunctionItems { get; } = new ObservableCollection<FunctionItem>();
 
@@ -38,7 +39,22 @@ namespace Socket_Debugger
             }
 
             FuncListView.ItemsSource = FunctionItems;
+            FuncListView.SelectedIndex = 0;
             //设置中间Panel数据
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            /// <summary>
+            /// 添加配置
+            /// </summary>
+            FunctionItem selectedItem = (FunctionItem) FuncListView.SelectedItem;
+            AddConfigDialog addConfig = new AddConfigDialog(selectedItem.ItemTitle);
+            addConfig.ShowDialog();
+        }
+
+        private void DelButton_Click(object sender, RoutedEventArgs e)
+        {
         }
 
         public class FunctionItem
