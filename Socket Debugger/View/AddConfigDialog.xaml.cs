@@ -56,7 +56,8 @@ namespace Socket_Debugger.View
             }
 
             //存入数据库
-            SqLiteHelper.GetInstance().AddConfig(0, ConnTypeTextBlock.Text, comment, connHost, connPort, message);
+            SqLiteHelper.GetInstance()
+                .AddConfig(IdHelper.Generat(), ConnTypeTextBlock.Text, comment, connHost, connPort, message);
             Close();
         }
     }

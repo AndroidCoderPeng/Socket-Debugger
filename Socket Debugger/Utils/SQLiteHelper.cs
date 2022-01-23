@@ -32,11 +32,11 @@ namespace Socket_Debugger.Utils
             GetSqLiteConnection().CreateTable<SocketConfig>();
         }
 
-        public void AddConfig(ulong id, string connType, string comment, string connHost, string connPort,
+        public void AddConfig(string uuid, string connType, string comment, string connHost, string connPort,
             string message)
         {
             SocketConfig config = new SocketConfig();
-            config.Id = id;
+            config.Uuid = uuid;
             config.ConnType = connType;
             config.Comment = comment;
             config.ConnHost = connHost;

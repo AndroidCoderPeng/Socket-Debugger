@@ -1,10 +1,12 @@
-﻿namespace Socket_Debugger.Utils
+﻿using System;
+
+namespace Socket_Debugger.Utils
 {
-    public class IdHelper
+    public static class IdHelper
     {
-        public ulong Generat()
+        public static string Generat()
         {
-            return 0;
+            return Guid.NewGuid().ToString("N");
         }
     }
 }
