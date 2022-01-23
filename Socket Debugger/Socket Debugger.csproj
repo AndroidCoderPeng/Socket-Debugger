@@ -76,6 +76,9 @@
     <Reference Include="SQLite-net, Version=1.8.116.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\sqlite-net-pcl.1.8.116\lib\netstandard2.0\SQLite-net.dll</HintPath>
     </Reference>
+    <Reference Include="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\sqlite-net-pcl.1.8.116\lib\netstandard2.0\SQLite-net.dll</HintPath>
+    </Reference>
     <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.0.4.976, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLitePCLRaw.bundle_green.2.0.4\lib\net461\SQLitePCLRaw.batteries_v2.dll</HintPath>
     </Reference>
@@ -124,6 +127,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\IdHelper.cs" />
+    <Compile Include="Utils\SQLiteHelper.cs" />
     <Compile Include="View\AddConfigDialog.xaml.cs">
       <DependentUpon>AddConfigDialog.xaml</DependentUpon>
     </Compile>

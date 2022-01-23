@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using Socket_Debugger.Model;
-using SQLite;
+using Socket_Debugger.Utils;
 
 namespace Socket_Debugger.View
 {
@@ -32,10 +29,8 @@ namespace Socket_Debugger.View
         {
             InitializeComponent();
             //初始化数据库
-            string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SocketConfig.db");
-            SQLiteConnection connection = new SQLiteConnection(configPath);
-            connection.CreateTable<SocketConfig>();
-            
+            SqLiteHelper.GetInstance().InitDataBase();
+
             //设置左边ListView数据
             for (int i = 0; i < 6; i++)
             {
@@ -55,14 +50,8 @@ namespace Socket_Debugger.View
         {
             // 添加配置
             FunctionItem selectedItem = (FunctionItem) FuncListView.SelectedItem;
-            AddConfigDialog addConfig = new AddConfigDialog(selectedItem.ItemTitle);
-            addConfig.sendMessage = Receive_Result;
-            addConfig.ShowDialog();
-        }
-
-        private static void Receive_Result(string value)
-        {
-            Debug.WriteLine(value);
+            var configDialog = new AddConfigDialog(selectedItem.ItemTitle);
+            configDialog.ShowDialog();
         }
 
         private void DelButton_Click(object sender, RoutedEventArgs e)

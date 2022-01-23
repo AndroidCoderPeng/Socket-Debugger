@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Windows;
-using Newtonsoft.Json;
+﻿using System.Windows;
+using Socket_Debugger.Utils;
 
 namespace Socket_Debugger.View
 {
@@ -9,10 +8,6 @@ namespace Socket_Debugger.View
     /// </summary>
     public partial class AddConfigDialog : Window
     {
-        public delegate void SendMessage(string value);
-
-        public SendMessage sendMessage;
-
         public AddConfigDialog(string itemTitle)
         {
             InitializeComponent();
@@ -60,14 +55,8 @@ namespace Socket_Debugger.View
                 message = msg;
             }
 
-            Hashtable config = new Hashtable();
-            config["comment"] = comment;
-            config["connHost"] = connHost;
-            config["connPort"] = connPort;
-            config["message"] = message;
-            string configJson = JsonConvert.SerializeObject(config);
-            //返回值给主页面
-            sendMessage(configJson);
+            //存入数据库
+            SqLiteHelper.GetInstance().AddConfig(0, ConnTypeTextBlock.Text, comment, connHost, connPort, message);
             Close();
         }
     }

@@ -4,7 +4,7 @@ namespace Socket_Debugger.Model
 {
     public class SocketConfig
     {
-        [PrimaryKey] public int Id { get; set; }
+        [PrimaryKey] public ulong Id { get; set; }
 
         public string ConnType { get; set; }
 
