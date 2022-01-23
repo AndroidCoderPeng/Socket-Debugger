@@ -7,7 +7,7 @@ using System.Windows.Media.Imaging;
 using Socket_Debugger.Model;
 using SQLite;
 
-namespace Socket_Debugger
+namespace Socket_Debugger.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

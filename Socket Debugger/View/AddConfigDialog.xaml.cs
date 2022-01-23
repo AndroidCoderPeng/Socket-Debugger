@@ -2,7 +2,7 @@
 using System.Windows;
 using Newtonsoft.Json;
 
-namespace Socket_Debugger
+namespace Socket_Debugger.View
 {
     /// <summary>
     /// AddConfigDialog.xaml 的交互逻辑
