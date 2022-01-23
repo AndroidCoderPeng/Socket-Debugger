@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using Socket_Debugger.Model;
+using SQLite;
 
 namespace Socket_Debugger
 {
@@ -28,7 +31,11 @@ namespace Socket_Debugger
         public MainWindow()
         {
             InitializeComponent();
-
+            //初始化数据库
+            string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SocketConfig.db");
+            SQLiteConnection connection = new SQLiteConnection(configPath);
+            connection.CreateTable<SocketConfig>();
+            
             //设置左边ListView数据
             for (int i = 0; i < 6; i++)
             {
