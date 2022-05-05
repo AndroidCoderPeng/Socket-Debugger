@@ -17,6 +17,7 @@
             <Setter Property="BorderBrush" Value="{x:Null}" />
             <Setter Property="Background" Value="{x:Null}" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="BorderThickness" Value="0" />
         </Style>
 
         <Style x:Key="CenterButtomButtonStyle" TargetType="Button" BasedOn="{StaticResource LeftButtonStyle}">
@@ -26,11 +27,15 @@
         </Style>
 
         <Style x:Key="RightFunctionButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="26" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="Background" Value="White" />
             <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10 2" />
+            <Setter Property="BorderThickness" Value="0" />
         </Style>
     </Window.Resources>
 
@@ -41,7 +46,9 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.65*" />
+                <ColumnDefinition Width="1" />
                 <ColumnDefinition Width="1.95*" />
+                <ColumnDefinition Width="1" />
                 <ColumnDefinition Width="5.00*" />
             </Grid.ColumnDefinitions>
 
@@ -49,82 +56,74 @@
             <StackPanel Orientation="Vertical">
                 <Button Style="{StaticResource LeftButtonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Image/Tcp.png" Width="35" Height="35" Margin="10 0 10 0" />
+                        <Image Source="/Resources/Image/Tcp.png" Width="35" Height="35" Margin="10 0 " />
                         <TextBlock Text="TCP客户端" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource LeftButtonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Image/Tcp.png" Width="35" Height="35" Margin="10 0 10 0" />
+                        <Image Source="/Resources/Image/Tcp.png" Width="35" Height="35" Margin="10 0 " />
                         <TextBlock Text="TCP服务端" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource LeftButtonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Image/Udp.png" Width="35" Height="35" Margin="10 0 10 0" />
+                        <Image Source="/Resources/Image/Udp.png" Width="35" Height="35" Margin="10 0 " />
                         <TextBlock Text="UDP客户端" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource LeftButtonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Image/Udp.png" Width="35" Height="35" Margin="10 0 10 0" />
+                        <Image Source="/Resources/Image/Udp.png" Width="35" Height="35" Margin="10 0 " />
                         <TextBlock Text="UDP服务端" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource LeftButtonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Image/WebSocket.png" Width="35" Height="35" Margin="10 0 10 0" />
-                        <TextBlock Text="WebSocket&#13;客户端" VerticalAlignment="Center" TextWrapping="Wrap" />
+                        <Image Source="/Resources/Image/WebSocket.png" Width="35" Height="35" Margin="10 0 " />
+                        <TextBlock Text="WebSocket&#13;客户端" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource LeftButtonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Image/WebSocket.png" Width="35" Height="35" Margin="10 0 10 0" />
-                        <TextBlock Text="WebSocket&#13;服务端" VerticalAlignment="Center" TextWrapping="Wrap" />
+                        <Image Source="/Resources/Image/WebSocket.png" Width="35" Height="35" Margin="10 0 " />
+                        <TextBlock Text="WebSocket&#13;服务端" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
             </StackPanel>
 
+            <Border Grid.Column="1" Background="LightGray" Width="1" />
+
             <!--  中间用户自定义功能列表  -->
-            <StackPanel Grid.Column="1" Orientation="Vertical">
+            <StackPanel Grid.Column="2" Orientation="Vertical">
                 <Grid Background="White" Height="538">
                     <ListView x:Name="SecondListView" Visibility="Collapsed" />
 
                     <StackPanel x:Name="EmptyPanel" Orientation="Vertical" VerticalAlignment="Center">
                         <Image Width="Auto" Height="Auto" Source="/Resources/Image/EmptyImage.png" Visibility="Visible" />
 
-                        <TextBlock Margin="10,5" HorizontalAlignment="Center" FontSize="14" Text="没有已存在配置"
-                                   TextWrapping="Wrap" />
+                        <TextBlock Margin="10,5" HorizontalAlignment="Center" FontSize="14" Text="没有已存在配置" />
 
-                        <TextBlock Margin="10,5" HorizontalAlignment="Center" FontSize="14" Text="点击下方 + 按钮添加配置"
-                                   TextWrapping="Wrap" />
+                        <TextBlock Margin="10,5" HorizontalAlignment="Center" FontSize="14" Text="点击下方 + 按钮添加配置" />
                     </StackPanel>
                 </Grid>
 
                 <!--  底部横线  -->
                 <Border Background="LightGray" Height="1" />
 
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Background="White" Height="30">
-                    <Button
-                        Style="{StaticResource CenterButtomButtonStyle}"
-                        x:Name="AddButton"
-                        Grid.Column="1"
-                        Width="30"
-                        Padding="0"
-                        Content="+" />
+                <StackPanel Orientation="Horizontal" Background="White" Height="30">
+                    <Button Style="{StaticResource CenterButtomButtonStyle}"
+                            x:Name="AddButton" Width="30" Padding="0" Content="+" />
 
-                    <Button
-                        Style="{StaticResource CenterButtomButtonStyle}"
-                        x:Name="DelButton"
-                        Grid.Column="2"
-                        Width="30"
-                        Padding="0"
-                        Content="-" />
+                    <Button Style="{StaticResource CenterButtomButtonStyle}"
+                            x:Name="DelButton" Width="30" Padding="0" Content="-" />
                 </StackPanel>
             </StackPanel>
 
+            <Border Grid.Column="3" Background="LightGray" Width="1" />
+
             <!--  右边功能列表  -->
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*" />
                     <RowDefinition Height="5.5*" />
@@ -143,126 +142,68 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
+                    <TextBlock x:Name="ServerTextBlock" Grid.Row="0" Grid.Column="0"
+                               Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center"
+                               FontSize="16" FontWeight="Bold" Foreground="Black" Text="服务器" />
 
-                    <TextBlock
-                        x:Name="ServerTextBlock"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Margin="10"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        FontSize="15"
-                        FontWeight="Bold"
-                        Foreground="Black"
-                        Text="服务器" />
+                    <TextBlock x:Name="HostTextBlock" Grid.Row="1" Grid.Column="0"
+                               Margin="10,0" VerticalAlignment="Top" FontSize="12" Text="111.198.10.15:12208" />
 
-                    <TextBlock
-                        x:Name="HostTextBlock"
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Margin="10,0"
-                        VerticalAlignment="Top"
-                        FontSize="13"
-                        Text="111.198.10.15:12208" />
+                    <RadioButton x:Name="StatusTextBlock" Grid.Row="2" Grid.Column="0"
+                                 Margin="10" HorizontalAlignment="Left" Content="已连接" IsChecked="True" />
 
-                    <RadioButton
-                        x:Name="StatusTextBlock"
-                        Grid.Row="3"
-                        Grid.Column="0"
-                        Margin="10"
-                        HorizontalAlignment="Left"
-                        Content="已连接"
-                        IsChecked="True" />
-
-                    <Button
-                        x:Name="EditButton"
-                        Grid.Row="0"
-                        Background="White"
-                        Grid.Column="2"
-                        Margin="5"
-                        HorizontalAlignment="Right"
-                        Content="编辑"
-                        Foreground="Black">
+                    <Button x:Name="EditButton" Grid.Row="0" Grid.Column="1" Margin="10 5" Content="编辑"
+                            Style="{StaticResource RightFunctionButtonStyle}">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5" />
+                                <Setter Property="BorderBrush" Value="White" />
                             </Style>
                         </Button.Resources>
                     </Button>
 
-                    <Button
-                        x:Name="ConnectButton"
-                        Grid.Row="1"
-                        Background="White"
-                        Grid.Column="2"
-                        Margin="5"
-                        HorizontalAlignment="Right"
-                        Content="连接"
-                        Foreground="Black" />
+                    <Button x:Name="ConnectButton" Grid.Row="1" Grid.Column="1" Margin="10 0" Content="连接"
+                            Style="{StaticResource RightFunctionButtonStyle}">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="5" />
+                                <Setter Property="BorderBrush" Value="White" />
+                            </Style>
+                        </Button.Resources>
+                    </Button>
 
-                    <Button
-                        x:Name="ClearButton"
-                        Grid.Row="3"
-                        Background="White"
-                        Grid.Column="2"
-                        Margin="5"
-                        Content="清空消息"
-                        Foreground="Black" />
+                    <Button x:Name="ClearButton" Grid.Row="2" Grid.Column="1" Margin="10 0" Content="清空消息"
+                            Style="{StaticResource RightFunctionButtonStyle}">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="5" />
+                                <Setter Property="BorderBrush" Value="White" />
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </Grid>
 
                 <!--  中间通信界面  -->
                 <DockPanel Grid.Row="1" Background="White" />
 
                 <!--  底部用户通信输入栏  -->
-                <Grid
-                    Grid.Row="2"
-                    Margin="0,1,0,0"
-                    Background="#FFFFFF">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="3*" />
-                    </Grid.RowDefinitions>
-                    <DockPanel LastChildFill="True" />
+                <StackPanel Grid.Row="2" Orientation="Vertical" Background="White">
+                    <Border Background="LightGray" Height="1" />
 
-                    <TextBox
-                        Grid.Row="1"
-                        Padding="3"
-                        VerticalContentAlignment="Top"
-                        AcceptsReturn="True"
-                        FontSize="13"
-                        TextWrapping="Wrap"
-                        VerticalScrollBarVisibility="Visible">
+                    <StackPanel Orientation="Horizontal" Height="30">
+                        <RadioButton Content="文本" IsChecked="True" />
+                        <RadioButton Content="16进制" Margin="10 0" />
+                    </StackPanel>
 
-                        <TextBox.Resources>
-                            <VisualBrush
-                                x:Key="HintText"
-                                AlignmentX="Left"
-                                AlignmentY="Top"
-                                Opacity="0.3"
-                                Stretch="None"
-                                TileMode="None">
-                                <VisualBrush.Visual>
-                                    <!--  必须设置Background，否则Padding无效  -->
-                                    <TextBlock
-                                        Padding="3"
-                                        Background="#00FFFFFF"
-                                        FontSize="13"
-                                        Text="请输入要发送的数据" />
-                                </VisualBrush.Visual>
-                            </VisualBrush>
-                        </TextBox.Resources>
+                    <Border Background="LightGray" Height="1" />
 
-                        <TextBox.Style>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Style.Triggers>
-                                    <Trigger Property="Text" Value="">
-                                        <Setter Property="Background" Value="{StaticResource HintText}" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                </Grid>
+                    <TextBox Height="100" Padding="5 10"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}" FontFamily="Consolas"
+                             VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" FontSize="16"
+                             BorderBrush="{x:Null}" BorderThickness="0" VerticalScrollBarVisibility="Auto"
+                             materialDesign:HintAssist.Hint="请输入要发送的数据"
+                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
+                </StackPanel>
             </Grid>
         </Grid>
     </StackPanel>
