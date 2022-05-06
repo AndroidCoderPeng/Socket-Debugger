@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Socket_Debugger.Utils;
 using Socket_Debugger.ViewModel;
 
 namespace Socket_Debugger.View
@@ -11,6 +12,9 @@ namespace Socket_Debugger.View
         public MainWindow()
         {
             InitializeComponent();
+            // 初始化数据库
+            SqLiteHelper.GetInstance().InitDataBase();
+
             this.DataContext = new MainViewModel();
         }
     }

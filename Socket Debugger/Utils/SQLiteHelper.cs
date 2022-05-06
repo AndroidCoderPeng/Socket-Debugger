@@ -22,27 +22,29 @@ namespace Socket_Debugger.Utils
             return _sqLiteHelper ?? (_sqLiteHelper = new SqLiteHelper());
         }
 
-        private SQLiteConnection GetSqLiteConnection()
-        {
-            return _connection ?? (_connection = new SQLiteConnection(ConfigPath));
-        }
-
         public void InitDataBase()
         {
             GetSqLiteConnection().CreateTable<ConnectionModel>();
         }
 
+        private SQLiteConnection GetSqLiteConnection()
+        {
+            return _connection ?? (_connection = new SQLiteConnection(ConfigPath));
+        }
+
         public void AddConfig(string uuid, string connType, string comment, string connHost, string connPort,
             string message)
         {
-            ConnectionModel config = new ConnectionModel();
-            config.Uuid = uuid;
-            config.ConnType = connType;
-            config.Comment = comment;
-            config.ConnHost = connHost;
-            config.ConnPort = connPort;
-            config.Message = message;
-            GetSqLiteConnection().Insert(config);
+            ConnectionModel config = new ConnectionModel
+            {
+                Uuid = uuid,
+                ConnType = connType,
+                Comment = comment,
+                ConnHost = connHost,
+                ConnPort = connPort,
+                Message = message
+            };
+            _connection.Insert(config);
         }
     }
 }
