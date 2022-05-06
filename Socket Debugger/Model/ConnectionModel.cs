@@ -2,7 +2,7 @@
 
 namespace Socket_Debugger.Model
 {
-    public class SocketConfig
+    public class ConnectionModel
     {
         [PrimaryKey, AutoIncrement] public int Id { get; set; }
 

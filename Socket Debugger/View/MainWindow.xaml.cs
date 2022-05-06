@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Socket_Debugger.ViewModel;
 
 namespace Socket_Debugger.View
 {
@@ -10,6 +11,7 @@ namespace Socket_Debugger.View
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainViewModel();
         }
     }
 }

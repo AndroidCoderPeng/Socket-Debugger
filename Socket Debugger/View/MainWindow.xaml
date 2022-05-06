@@ -5,7 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Socket Debugger" Background="#EEE9ED" Width="915" Height="610"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    Title="Socket Debugger" Background="#E8E9EA" Width="915" Height="610"
     ResizeMode="NoResize" WindowStartupLocation="CenterScreen" mc:Ignorable="d">
 
     <Window.Resources>
@@ -13,23 +14,29 @@
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontWeight" Value="Medium" />
             <Setter Property="Padding" Value="0 10" />
-            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Foreground" Value="#242424" />
             <Setter Property="BorderBrush" Value="{x:Null}" />
             <Setter Property="Background" Value="{x:Null}" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="BorderThickness" Value="0" />
         </Style>
 
-        <Style x:Key="CenterButtomButtonStyle" TargetType="Button" BasedOn="{StaticResource LeftButtonStyle}">
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Style x:Key="CenterButtomButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignPaperButton}">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="#242424" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Margin" Value="1 0" />
         </Style>
 
-        <Style x:Key="RightFunctionButtonStyle" TargetType="Button">
+        <Style x:Key="RightFunctionButtonStyle" TargetType="Button"
+               BasedOn="{StaticResource MaterialDesignRaisedButton}">
             <Setter Property="Height" Value="26" />
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Foreground" Value="#242424" />
             <Setter Property="Background" Value="White" />
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="VerticalAlignment" Value="Top" />
@@ -56,37 +63,43 @@
             <StackPanel Orientation="Vertical">
                 <Button Style="{StaticResource LeftButtonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Image/Tcp.png" Width="35" Height="35" Margin="10 0 " />
+                        <materialDesign:PackIcon Kind="AudioInputRca" Width="35" Height="35" Margin="10 0 "
+                                                 Foreground="#242424" />
                         <TextBlock Text="TCP客户端" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource LeftButtonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Image/Tcp.png" Width="35" Height="35" Margin="10 0 " />
+                        <materialDesign:PackIcon Kind="AudioInputRca" Width="35" Height="35" Margin="10 0 "
+                                                 Foreground="#242424" />
                         <TextBlock Text="TCP服务端" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource LeftButtonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Image/Udp.png" Width="35" Height="35" Margin="10 0 " />
+                        <materialDesign:PackIcon Kind="CableData" Width="35" Height="35" Margin="10 0 "
+                                                 Foreground="#242424" />
                         <TextBlock Text="UDP客户端" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource LeftButtonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Image/Udp.png" Width="35" Height="35" Margin="10 0 " />
+                        <materialDesign:PackIcon Kind="CableData" Width="35" Height="35" Margin="10 0 "
+                                                 Foreground="#242424" />
                         <TextBlock Text="UDP服务端" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource LeftButtonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Image/WebSocket.png" Width="35" Height="35" Margin="10 0 " />
+                        <materialDesign:PackIcon Kind="LanConnect" Width="35" Height="35" Margin="10 0 "
+                                                 Foreground="#242424" />
                         <TextBlock Text="WebSocket&#13;客户端" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource LeftButtonStyle}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Image/WebSocket.png" Width="35" Height="35" Margin="10 0 " />
+                        <materialDesign:PackIcon Kind="LanConnect" Width="35" Height="35" Margin="10 0 "
+                                                 Foreground="#242424" />
                         <TextBlock Text="WebSocket&#13;服务端" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
@@ -113,10 +126,13 @@
 
                 <StackPanel Orientation="Horizontal" Background="White" Height="30">
                     <Button Style="{StaticResource CenterButtomButtonStyle}"
-                            x:Name="AddButton" Width="30" Padding="0" Content="+" />
+                            Command="{Binding AddConfigCommand}">
+                        <materialDesign:PackIcon Kind="Plus" />
+                    </Button>
 
-                    <Button Style="{StaticResource CenterButtomButtonStyle}"
-                            x:Name="DelButton" Width="30" Padding="0" Content="-" />
+                    <Button Style="{StaticResource CenterButtomButtonStyle}">
+                        <materialDesign:PackIcon Kind="Minus" />
+                    </Button>
                 </StackPanel>
             </StackPanel>
 
@@ -144,13 +160,13 @@
 
                     <TextBlock x:Name="ServerTextBlock" Grid.Row="0" Grid.Column="0"
                                Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               FontSize="16" FontWeight="Bold" Foreground="Black" Text="服务器" />
+                               FontSize="16" FontWeight="Bold" Foreground="#242424" Text="服务器" />
 
                     <TextBlock x:Name="HostTextBlock" Grid.Row="1" Grid.Column="0"
                                Margin="10,0" VerticalAlignment="Top" FontSize="12" Text="111.198.10.15:12208" />
 
-                    <RadioButton x:Name="StatusTextBlock" Grid.Row="2" Grid.Column="0"
-                                 Margin="10" HorizontalAlignment="Left" Content="已连接" IsChecked="True" />
+                    <CheckBox x:Name="StatusTextBlock" Grid.Row="2" Grid.Column="0"
+                              Margin="10" HorizontalAlignment="Left" Content="已连接" IsChecked="True" />
 
                     <Button x:Name="EditButton" Grid.Row="0" Grid.Column="1" Margin="10 5" Content="编辑"
                             Style="{StaticResource RightFunctionButtonStyle}">
@@ -190,8 +206,8 @@
                 <StackPanel Grid.Row="2" Orientation="Vertical" Background="White">
                     <Border Background="LightGray" Height="1" />
 
-                    <StackPanel Orientation="Horizontal" Height="30">
-                        <RadioButton Content="文本" IsChecked="True" />
+                    <StackPanel Orientation="Horizontal" Height="30" Background="#ECECEC">
+                        <RadioButton Content="文本" IsChecked="True" Margin="5 0 0 0" />
                         <RadioButton Content="16进制" Margin="10 0" />
                     </StackPanel>
 

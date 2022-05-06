@@ -8,7 +8,7 @@ namespace Socket_Debugger.Utils
     public class SqLiteHelper
     {
         private static readonly string ConfigPath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SocketConfig.db");
+            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SocketConnection.db");
 
         private static SqLiteHelper _sqLiteHelper;
         private SQLiteConnection _connection;
@@ -29,13 +29,13 @@ namespace Socket_Debugger.Utils
 
         public void InitDataBase()
         {
-            GetSqLiteConnection().CreateTable<SocketConfig>();
+            GetSqLiteConnection().CreateTable<ConnectionModel>();
         }
 
         public void AddConfig(string uuid, string connType, string comment, string connHost, string connPort,
             string message)
         {
-            SocketConfig config = new SocketConfig();
+            ConnectionModel config = new ConnectionModel();
             config.Uuid = uuid;
             config.ConnType = connType;
             config.Comment = comment;
