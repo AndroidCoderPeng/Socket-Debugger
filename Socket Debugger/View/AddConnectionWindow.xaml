@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Socket_Debugger.View"
         mc:Ignorable="d" Background="#EDF2F2" WindowStartupLocation="CenterScreen"
-        Title="添加配置" Height="425" Width="535" ResizeMode="NoResize">
+        Title="添加配置" Height="455" Width="535" ResizeMode="NoResize">
 
     <Window.Resources>
         <Style x:Key="BottomFunctionButtonStyle" TargetType="Button"
@@ -48,11 +48,11 @@
         <!--  顶部横线  -->
         <Border Background="LightGray" Height="1" />
 
-        <Border Background="#E8E9EA" CornerRadius="10" Width="485" Height="300" Margin="10 20">
+        <Border Background="#E8E9EA" CornerRadius="10" Width="485" Height="330" Margin="10 20">
             <StackPanel Orientation="Vertical">
                 <DockPanel Margin="50 20 50 0" Height="35">
                     <TextBlock Text="备注" Style="{StaticResource TextBlockStyle}" />
-                    <TextBox Style="{StaticResource TextBoxStyle}">
+                    <TextBox x:Name="RemarkTextBox" Style="{StaticResource TextBoxStyle}">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5" />
@@ -64,12 +64,26 @@
 
                 <DockPanel Margin="50 5 50 0" Height="35">
                     <TextBlock Text="类型" Style="{StaticResource TextBlockStyle}" />
-                    <TextBlock Text="WebSocket客户端" VerticalAlignment="Center" FontSize="14" Foreground="#242424" />
+                    <TextBlock Text="{Binding SelectedType}" VerticalAlignment="Center" FontSize="14"
+                               Foreground="#242424" />
                 </DockPanel>
 
                 <DockPanel Margin="50 5 50 0" Height="35">
                     <TextBlock Text="地址" Style="{StaticResource TextBlockStyle}" />
-                    <TextBox Style="{StaticResource TextBoxStyle}">
+                    <!-- TextBox只能单向绑定数据 -->
+                    <TextBox Text="{Binding ConnectionAddress,Mode=OneWay}" Style="{StaticResource TextBoxStyle}">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="5" />
+                                <Setter Property="BorderBrush" Value="White" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </DockPanel>
+
+                <DockPanel Margin="50 5 50 0" Height="35">
+                    <TextBlock Text="端口" Style="{StaticResource TextBlockStyle}" />
+                    <TextBox x:Name="PortTextBox" Text="8080" Style="{StaticResource TextBoxStyle}">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5" />
@@ -81,8 +95,7 @@
 
                 <DockPanel Margin="50 5 50 0" Height="35">
                     <TextBlock Text="数据类型" Style="{StaticResource TextBlockStyle}" />
-                    <ComboBox FontSize="14"
-                              materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=DisplaySelectedItemCheckBox, Path=IsChecked}">
+                    <ComboBox x:Name="MsgTypeComboBox" FontSize="14">
                         <ComboBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="BorderThickness" Value="0" />
@@ -95,7 +108,7 @@
 
                 <DockPanel Margin="50 10 50 0" Height="35">
                     <TextBlock Text="重复发送" Style="{StaticResource TextBlockStyle}" />
-                    <TextBox Width="215" Style="{StaticResource TextBoxStyle}">
+                    <TextBox x:Name="MessageTextBox" Width="215" Style="{StaticResource TextBoxStyle}">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5" />
@@ -103,12 +116,13 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <CheckBox Width="80" Content="重复发送" Margin="5 0 0 0" />
+                    <CheckBox Width="80" Content="重复发送" Margin="5 0 0 0"
+                              Checked="OnChecked" Unchecked="OnUnchecked" />
                 </DockPanel>
 
                 <DockPanel Margin="50 10 50 0" Height="35">
                     <TextBlock Text="时间间隔" Style="{StaticResource TextBlockStyle}" />
-                    <TextBox Style="{StaticResource TextBoxStyle}">
+                    <TextBox x:Name="TimeTextBox" IsEnabled="False" Style="{StaticResource TextBoxStyle}">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5" />
@@ -132,7 +146,7 @@
             </Button>
 
             <Button Content="保存" Style="{StaticResource BottomFunctionButtonStyle}" Background="#027BFB"
-                    Foreground="White">
+                    Foreground="White" Command="{Binding ConfirmDialogCommand}">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="5" />

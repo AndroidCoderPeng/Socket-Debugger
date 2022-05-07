@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using Socket_Debugger.ViewModel;
 
 namespace Socket_Debugger.View
@@ -8,10 +9,28 @@ namespace Socket_Debugger.View
     /// </summary>
     public partial class AddConnectionWindow : Window
     {
-        public AddConnectionWindow()
+        public AddConnectionWindow(string selectedType)
         {
             InitializeComponent();
-            this.DataContext = new AddConnectionViewModel(this);
+            this.DataContext = new AddConnectionViewModel(this, selectedType);
+        }
+
+        private void OnChecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = (CheckBox) sender;
+            if (checkBox.IsChecked == true)
+            {
+                TimeTextBox.IsEnabled = true;
+            }
+        }
+
+        private void OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = (CheckBox) sender;
+            if (checkBox.IsChecked == false)
+            {
+                TimeTextBox.IsEnabled = false;
+            }
         }
     }
 }

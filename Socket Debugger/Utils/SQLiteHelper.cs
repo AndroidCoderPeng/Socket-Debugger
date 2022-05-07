@@ -32,19 +32,9 @@ namespace Socket_Debugger.Utils
             return _connection ?? (_connection = new SQLiteConnection(ConfigPath));
         }
 
-        public void AddConfig(string uuid, string connType, string comment, string connHost, string connPort,
-            string message)
+        public void AddConfig(ConnectionModel model)
         {
-            ConnectionModel config = new ConnectionModel
-            {
-                Uuid = uuid,
-                ConnType = connType,
-                Comment = comment,
-                ConnHost = connHost,
-                ConnPort = connPort,
-                Message = message
-            };
-            _connection.Insert(config);
+            _connection.Insert(model);
         }
     }
 }

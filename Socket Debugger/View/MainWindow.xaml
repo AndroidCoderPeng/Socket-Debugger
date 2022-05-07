@@ -10,7 +10,7 @@
     ResizeMode="NoResize" WindowStartupLocation="CenterScreen" mc:Ignorable="d">
 
     <Window.Resources>
-        <Style x:Key="LeftButtonStyle" TargetType="Button">
+        <Style x:Key="LeftListViewStyle" TargetType="ListView">
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontWeight" Value="Medium" />
             <Setter Property="Padding" Value="0 10" />
@@ -21,7 +21,7 @@
             <Setter Property="BorderThickness" Value="0" />
         </Style>
 
-        <Style x:Key="CenterButtomButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignPaperButton}">
+        <Style x:Key="CenterBottomButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignPaperButton}">
             <Setter Property="Width" Value="30" />
             <Setter Property="Height" Value="30" />
             <Setter Property="Padding" Value="5" />
@@ -52,58 +52,59 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.65*" />
+                <ColumnDefinition Width="1.60*" />
                 <ColumnDefinition Width="1" />
-                <ColumnDefinition Width="1.95*" />
+                <ColumnDefinition Width="2.00*" />
                 <ColumnDefinition Width="1" />
                 <ColumnDefinition Width="5.00*" />
             </Grid.ColumnDefinitions>
 
             <!--  左边功能列表  -->
-            <StackPanel Orientation="Vertical">
-                <Button Style="{StaticResource LeftButtonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="AudioInputRca" Width="35" Height="35" Margin="10 0 "
-                                                 Foreground="#242424" />
-                        <TextBlock Text="TCP客户端" VerticalAlignment="Center" />
+            <ListView Style="{StaticResource LeftListViewStyle}"
+                      SelectedIndex="0" SelectedItem="{Binding SelectedItemView}">
+                <ListViewItem>
+                    <StackPanel Orientation="Horizontal" Height="45">
+                        <materialDesign:PackIcon Kind="CableData" Width="35" Height="35" Foreground="#242424"
+                                                 VerticalAlignment="Center" />
+                        <TextBlock Text="TCP客户端" VerticalAlignment="Center" Margin="10 0" />
                     </StackPanel>
-                </Button>
-                <Button Style="{StaticResource LeftButtonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="AudioInputRca" Width="35" Height="35" Margin="10 0 "
-                                                 Foreground="#242424" />
-                        <TextBlock Text="TCP服务端" VerticalAlignment="Center" />
+                </ListViewItem>
+                <ListViewItem>
+                    <StackPanel Orientation="Horizontal" Height="45">
+                        <materialDesign:PackIcon Kind="CableData" Width="35" Height="35" Foreground="#242424"
+                                                 VerticalAlignment="Center" />
+                        <TextBlock Text="TCP服务端" VerticalAlignment="Center" Margin="10 0" />
                     </StackPanel>
-                </Button>
-                <Button Style="{StaticResource LeftButtonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="CableData" Width="35" Height="35" Margin="10 0 "
-                                                 Foreground="#242424" />
-                        <TextBlock Text="UDP客户端" VerticalAlignment="Center" />
+                </ListViewItem>
+                <ListViewItem>
+                    <StackPanel Orientation="Horizontal" Height="45">
+                        <materialDesign:PackIcon Kind="AudioInputRca" Width="35" Height="35" Foreground="#242424"
+                                                 VerticalAlignment="Center" />
+                        <TextBlock Text="UDP客户端" VerticalAlignment="Center" Margin="10 0" />
                     </StackPanel>
-                </Button>
-                <Button Style="{StaticResource LeftButtonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="CableData" Width="35" Height="35" Margin="10 0 "
-                                                 Foreground="#242424" />
-                        <TextBlock Text="UDP服务端" VerticalAlignment="Center" />
+                </ListViewItem>
+                <ListViewItem>
+                    <StackPanel Orientation="Horizontal" Height="45">
+                        <materialDesign:PackIcon Kind="AudioInputRca" Width="35" Height="35" Foreground="#242424"
+                                                 VerticalAlignment="Center" />
+                        <TextBlock Text="UDP服务端" VerticalAlignment="Center" Margin="10 0" />
                     </StackPanel>
-                </Button>
-                <Button Style="{StaticResource LeftButtonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="LanConnect" Width="35" Height="35" Margin="10 0 "
-                                                 Foreground="#242424" />
-                        <TextBlock Text="WebSocket&#13;客户端" VerticalAlignment="Center" />
+                </ListViewItem>
+                <ListViewItem>
+                    <StackPanel Orientation="Horizontal" Height="45">
+                        <materialDesign:PackIcon Kind="LanConnect" Width="35" Height="35" Foreground="#242424"
+                                                 VerticalAlignment="Center" />
+                        <TextBlock Text="WebSocket&#13;客户端" VerticalAlignment="Center" Margin="10 0" />
                     </StackPanel>
-                </Button>
-                <Button Style="{StaticResource LeftButtonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="LanConnect" Width="35" Height="35" Margin="10 0 "
-                                                 Foreground="#242424" />
-                        <TextBlock Text="WebSocket&#13;服务端" VerticalAlignment="Center" />
+                </ListViewItem>
+                <ListViewItem>
+                    <StackPanel Orientation="Horizontal" Height="45">
+                        <materialDesign:PackIcon Kind="LanConnect" Width="35" Height="35" Foreground="#242424"
+                                                 VerticalAlignment="Center" />
+                        <TextBlock Text="WebSocket&#13;服务端" VerticalAlignment="Center" Margin="10 0" />
                     </StackPanel>
-                </Button>
-            </StackPanel>
+                </ListViewItem>
+            </ListView>
 
             <Border Grid.Column="1" Background="LightGray" Width="1" />
 
@@ -125,12 +126,12 @@
                 <Border Background="LightGray" Height="1" />
 
                 <StackPanel Orientation="Horizontal" Background="White" Height="30">
-                    <Button Style="{StaticResource CenterButtomButtonStyle}"
+                    <Button Style="{StaticResource CenterBottomButtonStyle}"
                             Command="{Binding AddConfigCommand}">
                         <materialDesign:PackIcon Kind="Plus" />
                     </Button>
 
-                    <Button Style="{StaticResource CenterButtomButtonStyle}">
+                    <Button Style="{StaticResource CenterBottomButtonStyle}">
                         <materialDesign:PackIcon Kind="Minus" />
                     </Button>
                 </StackPanel>
