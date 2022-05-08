@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Socket_Debugger.Model;
@@ -13,7 +14,7 @@ namespace Socket_Debugger.View
     {
         private readonly SqLiteHelper _sqLiteHelper;
         private string _selectedType = "TCP客户端";
-        private List<ConnectionModel> _connectionModels;
+        private ObservableCollection<ConnectionModel> _connectionModels;
         private ConnectionModel _selectedModel;
 
         public MainWindow()
@@ -79,6 +80,9 @@ namespace Socket_Debugger.View
             if (_selectedModel != null)
             {
                 _sqLiteHelper.DeleteConnectionModel(_selectedModel);
+                _connectionModels.Remove(_selectedModel);
+                // 删除数据之后重新绑定数据源
+                CenterListView.ItemsSource = _connectionModels;
             }
             else
             {

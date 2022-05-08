@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Socket_Debugger.Model;
@@ -41,11 +41,16 @@ namespace Socket_Debugger.Utils
         }
 
         // 根据连接类型查询数据集合
-        public List<ConnectionModel> QueryConnectionModelsByType(string type)
+        public ObservableCollection<ConnectionModel> QueryConnectionModelsByType(string type)
         {
+            ObservableCollection<ConnectionModel> collectionResult = new ObservableCollection<ConnectionModel>();
             TableQuery<ConnectionModel> tableQuery = _connection.Table<ConnectionModel>()
                 .Where(param => param.ConnType.Equals(type));
-            return Enumerable.ToList(tableQuery);
+            foreach (ConnectionModel model in tableQuery)
+            {
+                collectionResult.Add(model);
+            }
+            return collectionResult;
         }
 
         // 根据uuid查询数据
