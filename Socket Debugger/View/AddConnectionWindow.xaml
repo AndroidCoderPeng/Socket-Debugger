@@ -62,14 +62,13 @@
 
                 <DockPanel Margin="50 5 50 0" Height="35">
                     <TextBlock Text="类型" Style="{StaticResource TextBlockStyle}" />
-                    <TextBlock Text="{Binding SelectedType}" VerticalAlignment="Center" FontSize="14"
+                    <TextBlock x:Name="SelectedTypeTextBox" VerticalAlignment="Center" FontSize="14"
                                Foreground="#242424" />
                 </DockPanel>
 
                 <DockPanel Margin="50 5 50 0" Height="35">
                     <TextBlock Text="地址" Style="{StaticResource TextBlockStyle}" />
-                    <TextBox Text="{Binding ConnectionAddress,Mode=OneWay}"
-                             Style="{StaticResource TextBoxStyle}">
+                    <TextBox x:Name="ConnectionAddressTextBox" Style="{StaticResource TextBoxStyle}">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5" />
@@ -115,7 +114,7 @@
                         </TextBox.Resources>
                     </TextBox>
                     <CheckBox x:Name="RepeatCheckBox" Width="80" Content="重复发送" Margin="5 0 0 0"
-                              Checked="OnChecked" Unchecked="OnUnchecked" />
+                              Click="RepeatCheckBox_OnClick" />
                 </DockPanel>
 
                 <DockPanel Margin="50 10 50 0" Height="35">
@@ -134,7 +133,7 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="取消" Style="{StaticResource BottomFunctionButtonStyle}"
-                    Command="{Binding DismissDialogCommand}">
+                    Click="CancelButton_OnClick" Cursor="Hand">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="5" />
@@ -144,7 +143,7 @@
             </Button>
 
             <Button Content="保存" Style="{StaticResource BottomFunctionButtonStyle}" Background="#027BFB"
-                    Foreground="White" Command="{Binding ConfirmDialogCommand}">
+                    Foreground="White" Click="SaveButton_OnClick">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="5" />

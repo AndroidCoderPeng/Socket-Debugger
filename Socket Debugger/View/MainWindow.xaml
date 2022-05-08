@@ -61,7 +61,7 @@
 
             <!--  左边功能列表  -->
             <ListView Style="{StaticResource LeftListViewStyle}"
-                      SelectedIndex="0" SelectedItem="{Binding SelectedItemView}">
+                      SelectedIndex="0" SelectionChanged="ListView_SelectionChanged">
                 <ListViewItem>
                     <StackPanel Orientation="Horizontal" Height="45">
                         <materialDesign:PackIcon Kind="CableData" Width="35" Height="35" Foreground="#242424"
@@ -127,11 +127,12 @@
 
                 <StackPanel Orientation="Horizontal" Background="White" Height="30">
                     <Button Style="{StaticResource CenterBottomButtonStyle}"
-                            Command="{Binding AddConfigCommand}">
+                            Click="AddButton_OnClick">
                         <materialDesign:PackIcon Kind="Plus" />
                     </Button>
 
-                    <Button Style="{StaticResource CenterBottomButtonStyle}">
+                    <Button Style="{StaticResource CenterBottomButtonStyle}"
+                            Click="DelButton_OnClick">
                         <materialDesign:PackIcon Kind="Minus" />
                     </Button>
                 </StackPanel>

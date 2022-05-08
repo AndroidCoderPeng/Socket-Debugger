@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using Socket_Debugger.Utils;
-using Socket_Debugger.ViewModel;
 
 namespace Socket_Debugger.View
 {
@@ -9,13 +10,32 @@ namespace Socket_Debugger.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string _selectedType = "TCP客户端";
+
         public MainWindow()
         {
             InitializeComponent();
             // 初始化数据库
             SqLiteHelper.GetInstance().InitDataBase();
+        }
 
-            this.DataContext = new MainViewModel();
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListView listView = (ListView) sender;
+            ListViewItem selectedItemView = (ListViewItem) listView.SelectedItem;
+            StackPanel stackPanel = (StackPanel) selectedItemView.Content;
+            TextBlock textBlock = (TextBlock) stackPanel.Children[1];
+            _selectedType = textBlock.Text.Contains("\r") ? textBlock.Text.Replace("\r", "") : textBlock.Text;
+        }
+
+        private void AddButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            AddConnectionWindow connectionWindow = new AddConnectionWindow(_selectedType);
+            connectionWindow.ShowDialog();
+        }
+
+        private void DelButton_OnClick(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
