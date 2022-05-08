@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using Newtonsoft.Json;
 using Socket_Debugger.Model;
 using Socket_Debugger.Utils;
 
@@ -65,8 +63,9 @@ namespace Socket_Debugger.View
         {
             if (!(CenterListView.SelectedItem is ConnectionModel model)) return;
             _selectedModel = model;
-            Trace.WriteLine(JsonConvert.SerializeObject(model));
             // 绑定右边面板
+            ServerTextBlock.Text = _selectedModel.Comment;
+            HostTextBlock.Text = _selectedModel.ConnHost + ":" + _selectedModel.ConnPort;
         }
 
         private void AddButton_OnClick(object sender, RoutedEventArgs e)

@@ -10,17 +10,6 @@
     ResizeMode="NoResize" WindowStartupLocation="CenterScreen" mc:Ignorable="d">
 
     <Window.Resources>
-        <Style x:Key="LeftListViewStyle" TargetType="ListView">
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="FontWeight" Value="Medium" />
-            <Setter Property="Padding" Value="0 10" />
-            <Setter Property="Foreground" Value="#242424" />
-            <Setter Property="BorderBrush" Value="{x:Null}" />
-            <Setter Property="Background" Value="{x:Null}" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
-
         <Style x:Key="CenterBottomButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignPaperButton}">
             <Setter Property="Width" Value="30" />
             <Setter Property="Height" Value="30" />
@@ -100,7 +89,7 @@
             <StackPanel Grid.Column="2" Orientation="Vertical">
                 <Grid Background="White" Height="538">
                     <ListView x:Name="CenterListView" Visibility="Collapsed"
-                              SelectionChanged="CenterListView_SelectionChanged"
+                              SelectedIndex="0" SelectionChanged="CenterListView_SelectionChanged"
                               ItemTemplate="{StaticResource CenterListDataTemplate}" />
 
                     <StackPanel x:Name="EmptyPanel" Orientation="Vertical" VerticalAlignment="Center">
