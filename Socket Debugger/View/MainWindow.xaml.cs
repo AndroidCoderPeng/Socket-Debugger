@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
+using Socket_Debugger.Model;
 using Socket_Debugger.Utils;
 
 namespace Socket_Debugger.View
@@ -11,6 +11,7 @@ namespace Socket_Debugger.View
     public partial class MainWindow : Window
     {
         private string _selectedType = "TCP客户端";
+        private ConnectionModel selectedModel;
 
         public MainWindow()
         {
@@ -36,6 +37,14 @@ namespace Socket_Debugger.View
 
         private void DelButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (selectedModel != null)
+            {
+                SqLiteHelper.GetInstance().DeleteConnectionModel(selectedModel);
+            }
+            else
+            {
+                MessageBoxHelper.ShowError("删除失败！");
+            }
         }
     }
 }
