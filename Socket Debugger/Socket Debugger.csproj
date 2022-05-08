@@ -129,6 +129,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Utils\IdHelper.cs" />
+    <Compile Include="Utils\MessageBoxHelper.cs" />
     <Compile Include="Utils\SQLiteHelper.cs" />
     <Compile Include="ViewModel\AddConnectionViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

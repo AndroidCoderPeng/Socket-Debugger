@@ -3,14 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:Socket_Debugger.View"
         mc:Ignorable="d" Background="#EDF2F2" WindowStartupLocation="CenterScreen"
         Title="添加配置" Height="455" Width="535" ResizeMode="NoResize">
 
     <Window.Resources>
         <Style x:Key="BottomFunctionButtonStyle" TargetType="Button"
-               BasedOn="{StaticResource MaterialDesignRaisedButton}">
+               BasedOn="{StaticResource MaterialDesignPaperButton}">
             <Setter Property="Height" Value="26" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="Foreground" Value="#242424" />
@@ -70,8 +68,8 @@
 
                 <DockPanel Margin="50 5 50 0" Height="35">
                     <TextBlock Text="地址" Style="{StaticResource TextBlockStyle}" />
-                    <!-- TextBox只能单向绑定数据 -->
-                    <TextBox Text="{Binding ConnectionAddress,Mode=OneWay}" Style="{StaticResource TextBoxStyle}">
+                    <TextBox Text="{Binding ConnectionAddress,Mode=OneWay}"
+                             Style="{StaticResource TextBoxStyle}">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5" />
@@ -83,7 +81,7 @@
 
                 <DockPanel Margin="50 5 50 0" Height="35">
                     <TextBlock Text="端口" Style="{StaticResource TextBlockStyle}" />
-                    <TextBox x:Name="PortTextBox" Text="8080" Style="{StaticResource TextBoxStyle}">
+                    <TextBox x:Name="PortTextBox" Style="{StaticResource TextBoxStyle}">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5" />
@@ -116,7 +114,7 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <CheckBox Width="80" Content="重复发送" Margin="5 0 0 0"
+                    <CheckBox x:Name="RepeatCheckBox" Width="80" Content="重复发送" Margin="5 0 0 0"
                               Checked="OnChecked" Unchecked="OnUnchecked" />
                 </DockPanel>
 

@@ -32,9 +32,15 @@ namespace Socket_Debugger.Utils
             return _connection ?? (_connection = new SQLiteConnection(ConfigPath));
         }
 
+        // 存入连接配置
         public void AddConfig(ConnectionModel model)
         {
             _connection.Insert(model);
         }
+
+        // public List<ConnectionModel> GetConnectionModels()
+        // {
+        //     return _connection.Query<>();
+        // }
     }
 }

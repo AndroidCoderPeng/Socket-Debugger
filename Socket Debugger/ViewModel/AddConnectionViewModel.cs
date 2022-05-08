@@ -32,6 +32,7 @@ namespace Socket_Debugger.ViewModel
             get
             {
                 // 获取本机IP地址
+                if (_selectedType.Contains("WebSocket")) return _connectionAddress;
                 IPAddress[] addressList = Dns.GetHostEntry(Dns.GetHostName()).AddressList;
                 foreach (IPAddress address in addressList)
                 {
@@ -49,7 +50,16 @@ namespace Socket_Debugger.ViewModel
         public AddConnectionViewModel(AddConnectionWindow window, string selectedType)
         {
             _selectedType = selectedType;
-            window.PortTextBox.IsEnabled = !_selectedType.Contains("WebSocket");
+            if (_selectedType.Contains("WebSocket"))
+            {
+                window.PortTextBox.Text = "/";
+                window.PortTextBox.IsEnabled = false;
+            }
+            else
+            {
+                window.PortTextBox.Text = "8080";
+                window.PortTextBox.IsEnabled = true;
+            }
 
             // 保存连接数据
             ConfirmDialogCommand = new RelayCommand(() =>
@@ -57,29 +67,58 @@ namespace Socket_Debugger.ViewModel
                 string remark = window.RemarkTextBox.Text;
                 if (remark.Equals(""))
                 {
+                    MessageBoxHelper.ShowError("操作失败！请输入备注信息");
                     return;
                 }
+
+                if (_connectionAddress == null)
+                {
+                    MessageBoxHelper.ShowError("操作失败！请输入连接地址");
+                    return;
+                }
+
                 string port = window.PortTextBox.Text;
                 if (port.Equals(""))
                 {
+                    MessageBoxHelper.ShowError("操作失败！请输入端口信息");
                     return;
                 }
 
-                int time = 0;
-                if (!window.TimeTextBox.Text.Equals(""))
+                string repeatMessage = "";
+                // 用int32最大值间接代替不重复发送数据
+                int time = int.MaxValue;
+                if (window.RepeatCheckBox.IsChecked == true)
                 {
+                    string messageStr = window.MessageTextBox.Text;
+                    if (messageStr.Equals(""))
+                    {
+                        MessageBoxHelper.ShowError("操作失败！请输入需要重复发送的数据内容");
+                        return;
+                    }
+
+                    repeatMessage = messageStr;
+
+                    string timeStr = window.TimeTextBox.Text;
+                    if (timeStr.Equals(""))
+                    {
+                        MessageBoxHelper.ShowError("操作失败！请输入时间间隔");
+                        return;
+                    }
+
                     time = int.Parse(window.TimeTextBox.Text);
                 }
 
-                ConnectionModel model = new ConnectionModel();
-                model.Uuid = IdHelper.Generat();
-                model.Comment = remark;
-                model.ConnType = _selectedType;
-                model.ConnHost = _connectionAddress;
-                model.ConnPort = port;
-                model.MsgType = window.MsgTypeComboBox.Text;
-                model.Message = window.MessageTextBox.Text;
-                model.TimePeriod = time;
+                ConnectionModel model = new ConnectionModel
+                {
+                    Uuid = IdHelper.Generate(),
+                    Comment = remark,
+                    ConnType = _selectedType,
+                    ConnHost = _connectionAddress,
+                    ConnPort = port,
+                    MsgType = window.MsgTypeComboBox.Text,
+                    Message = repeatMessage,
+                    TimePeriod = time
+                };
                 SqLiteHelper.GetInstance().AddConfig(model);
                 window.Close();
             });
