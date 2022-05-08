@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using Socket_Debugger.Model;
 using Socket_Debugger.Utils;
@@ -10,14 +11,31 @@ namespace Socket_Debugger.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly SqLiteHelper _sqLiteHelper;
         private string _selectedType = "TCP客户端";
+        private List<ConnectionModel> _connectionModels;
         private ConnectionModel selectedModel;
 
         public MainWindow()
         {
             InitializeComponent();
             // 初始化数据库
-            SqLiteHelper.GetInstance().InitDataBase();
+            _sqLiteHelper = SqLiteHelper.GetInstance();
+            _sqLiteHelper.InitDataBase();
+            _connectionModels = _sqLiteHelper.QueryConnectionModelsByType(_selectedType);
+            if (_connectionModels == null)
+            {
+                CenterListView.Visibility = Visibility.Collapsed;
+                EmptyPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CenterListView.Visibility = Visibility.Visible;
+                EmptyPanel.Visibility = Visibility.Collapsed;
+            }
+
+            //绑定数据
+            CenterListView.ItemsSource = _connectionModels;
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,7 +57,7 @@ namespace Socket_Debugger.View
         {
             if (selectedModel != null)
             {
-                SqLiteHelper.GetInstance().DeleteConnectionModel(selectedModel);
+                _sqLiteHelper.DeleteConnectionModel(selectedModel);
             }
             else
             {

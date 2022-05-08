@@ -44,6 +44,25 @@
             <Setter Property="Padding" Value="10 2" />
             <Setter Property="BorderThickness" Value="0" />
         </Style>
+
+        <!--数据模板，类似Android里面ListView的Adapter-->
+        <DataTemplate x:Key="ListDataTemplate">
+            <!--数据模板，类似Android里面的ListView的ItemView-->
+            <StackPanel Orientation="Horizontal" Height="45">
+                <materialDesign:PackIcon Kind="Laptop" Width="35" Height="35" Foreground="#242424"
+                                         VerticalAlignment="Center" />
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Comment}" VerticalAlignment="Center"
+                               Margin="10 5" Foreground="#242424" FontSize="16" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding ConnHost}" VerticalAlignment="Center"
+                                   Margin="10 0 0 0" Foreground="#242424" />
+                        <TextBlock Text=" : " VerticalAlignment="Center" Foreground="#242424" />
+                        <TextBlock Text="{Binding ConnPort}" VerticalAlignment="Center" Foreground="#242424" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
 
     <StackPanel Orientation="Vertical">
@@ -111,13 +130,12 @@
             <!--  中间用户自定义功能列表  -->
             <StackPanel Grid.Column="2" Orientation="Vertical">
                 <Grid Background="White" Height="538">
-                    <ListView x:Name="SecondListView" Visibility="Collapsed" />
+                    <ListView x:Name="CenterListView" Visibility="Collapsed"
+                              ItemTemplate="{StaticResource ListDataTemplate}" />
 
                     <StackPanel x:Name="EmptyPanel" Orientation="Vertical" VerticalAlignment="Center">
                         <Image Width="Auto" Height="Auto" Source="/Resources/Image/EmptyImage.png" Visibility="Visible" />
-
                         <TextBlock Margin="10,5" HorizontalAlignment="Center" FontSize="14" Text="没有已存在配置" />
-
                         <TextBlock Margin="10,5" HorizontalAlignment="Center" FontSize="14" Text="点击下方 + 按钮添加配置" />
                     </StackPanel>
                 </Grid>
@@ -219,8 +237,7 @@
                              Style="{StaticResource MaterialDesignOutlinedTextBox}" FontFamily="Consolas"
                              VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" FontSize="16"
                              BorderBrush="{x:Null}" BorderThickness="0" VerticalScrollBarVisibility="Auto"
-                             materialDesign:HintAssist.Hint="请输入要发送的数据"
-                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
+                             materialDesign:HintAssist.Hint="请输入要发送的数据" />
                 </StackPanel>
             </Grid>
         </Grid>
