@@ -21,6 +21,19 @@ namespace Socket_Debugger.View
         public MainWindow()
         {
             InitializeComponent();
+            // 初始化左边功能列表
+            List<LeftFunctionModel> leftFunctionModels = new List<LeftFunctionModel>
+            {
+                new LeftFunctionModel {FunctionIcon = "CableData", FunctionName = "TCP客户端"},
+                new LeftFunctionModel {FunctionIcon = "CableData", FunctionName = "TCP服务端"},
+                new LeftFunctionModel {FunctionIcon = "AudioInputRca", FunctionName = "UDP客户端"},
+                new LeftFunctionModel {FunctionIcon = "AudioInputRca", FunctionName = "UDP服务端"},
+                new LeftFunctionModel {FunctionIcon = "LanConnect", FunctionName = "WebSocket\r客户端"},
+                new LeftFunctionModel {FunctionIcon = "LanConnect", FunctionName = "WebSocket\r服务端"}
+            };
+            //绑定数据
+            LeftListView.ItemsSource = leftFunctionModels;
+
             // 初始化数据库
             _sqLiteHelper = SqLiteHelper.GetInstance();
             _sqLiteHelper.InitDataBase();
@@ -42,11 +55,10 @@ namespace Socket_Debugger.View
 
         private void LeftListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ListView listView = (ListView) sender;
-            ListViewItem selectedItemView = (ListViewItem) listView.SelectedItem;
-            StackPanel stackPanel = (StackPanel) selectedItemView.Content;
-            TextBlock textBlock = (TextBlock) stackPanel.Children[1];
-            _selectedType = textBlock.Text.Contains("\r") ? textBlock.Text.Replace("\r", "") : textBlock.Text;
+            if (!(LeftListView.SelectedItem is LeftFunctionModel model)) return;
+            _selectedType = model.FunctionName.Contains("\r")
+                ? model.FunctionName.Replace("\r", "")
+                : model.FunctionName;
         }
 
         private void CenterListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -55,7 +67,6 @@ namespace Socket_Debugger.View
             _selectedModel = model;
             Trace.WriteLine(JsonConvert.SerializeObject(model));
             // 绑定右边面板
-            
         }
 
         private void AddButton_OnClick(object sender, RoutedEventArgs e)

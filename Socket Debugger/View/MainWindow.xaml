@@ -46,6 +46,17 @@
         </Style>
 
         <!--数据模板，类似Android里面ListView的Adapter-->
+        <DataTemplate x:Key="LeftListDataTemplate">
+            <!--数据模板，类似Android里面的ListView的ItemView-->
+            <StackPanel Orientation="Horizontal" Height="45">
+                <materialDesign:PackIcon Kind="{Binding FunctionIcon}" Width="35" Height="35"
+                                         Foreground="#242424" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding FunctionName}" VerticalAlignment="Center" Margin="10 0"
+                           Foreground="#242424" FontSize="18" />
+            </StackPanel>
+        </DataTemplate>
+
+        <!--数据模板，类似Android里面ListView的Adapter-->
         <DataTemplate x:Key="CenterListDataTemplate">
             <!--数据模板，类似Android里面的ListView的ItemView-->
             <StackPanel Orientation="Horizontal" Height="45">
@@ -79,51 +90,9 @@
             </Grid.ColumnDefinitions>
 
             <!--  左边功能列表  -->
-            <ListView x:Name="LeftListView" Style="{StaticResource LeftListViewStyle}"
-                      SelectedIndex="0" SelectionChanged="LeftListView_SelectionChanged">
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal" Height="45">
-                        <materialDesign:PackIcon Kind="CableData" Width="35" Height="35" Foreground="#242424"
-                                                 VerticalAlignment="Center" />
-                        <TextBlock Text="TCP客户端" VerticalAlignment="Center" Margin="10 0" />
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal" Height="45">
-                        <materialDesign:PackIcon Kind="CableData" Width="35" Height="35" Foreground="#242424"
-                                                 VerticalAlignment="Center" />
-                        <TextBlock Text="TCP服务端" VerticalAlignment="Center" Margin="10 0" />
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal" Height="45">
-                        <materialDesign:PackIcon Kind="AudioInputRca" Width="35" Height="35" Foreground="#242424"
-                                                 VerticalAlignment="Center" />
-                        <TextBlock Text="UDP客户端" VerticalAlignment="Center" Margin="10 0" />
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal" Height="45">
-                        <materialDesign:PackIcon Kind="AudioInputRca" Width="35" Height="35" Foreground="#242424"
-                                                 VerticalAlignment="Center" />
-                        <TextBlock Text="UDP服务端" VerticalAlignment="Center" Margin="10 0" />
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal" Height="45">
-                        <materialDesign:PackIcon Kind="LanConnect" Width="35" Height="35" Foreground="#242424"
-                                                 VerticalAlignment="Center" />
-                        <TextBlock Text="WebSocket&#13;客户端" VerticalAlignment="Center" Margin="10 0" />
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal" Height="45">
-                        <materialDesign:PackIcon Kind="LanConnect" Width="35" Height="35" Foreground="#242424"
-                                                 VerticalAlignment="Center" />
-                        <TextBlock Text="WebSocket&#13;服务端" VerticalAlignment="Center" Margin="10 0" />
-                    </StackPanel>
-                </ListViewItem>
-            </ListView>
+            <ListView x:Name="LeftListView"
+                      SelectedIndex="0" SelectionChanged="LeftListView_SelectionChanged"
+                      ItemTemplate="{StaticResource LeftListDataTemplate}" />
 
             <Border Grid.Column="1" Background="LightGray" Width="1" />
 
