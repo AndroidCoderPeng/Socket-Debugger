@@ -46,7 +46,7 @@
         </Style>
 
         <!--数据模板，类似Android里面ListView的Adapter-->
-        <DataTemplate x:Key="ListDataTemplate">
+        <DataTemplate x:Key="CenterListDataTemplate">
             <!--数据模板，类似Android里面的ListView的ItemView-->
             <StackPanel Orientation="Horizontal" Height="45">
                 <materialDesign:PackIcon Kind="Laptop" Width="35" Height="35" Foreground="#242424"
@@ -79,8 +79,8 @@
             </Grid.ColumnDefinitions>
 
             <!--  左边功能列表  -->
-            <ListView Style="{StaticResource LeftListViewStyle}"
-                      SelectedIndex="0" SelectionChanged="ListView_SelectionChanged">
+            <ListView x:Name="LeftListView" Style="{StaticResource LeftListViewStyle}"
+                      SelectedIndex="0" SelectionChanged="LeftListView_SelectionChanged">
                 <ListViewItem>
                     <StackPanel Orientation="Horizontal" Height="45">
                         <materialDesign:PackIcon Kind="CableData" Width="35" Height="35" Foreground="#242424"
@@ -131,7 +131,8 @@
             <StackPanel Grid.Column="2" Orientation="Vertical">
                 <Grid Background="White" Height="538">
                     <ListView x:Name="CenterListView" Visibility="Collapsed"
-                              ItemTemplate="{StaticResource ListDataTemplate}" />
+                              SelectionChanged="CenterListView_SelectionChanged"
+                              ItemTemplate="{StaticResource CenterListDataTemplate}" />
 
                     <StackPanel x:Name="EmptyPanel" Orientation="Vertical" VerticalAlignment="Center">
                         <Image Width="Auto" Height="Auto" Source="/Resources/Image/EmptyImage.png" Visibility="Visible" />
