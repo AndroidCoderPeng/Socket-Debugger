@@ -37,15 +37,19 @@ namespace Socket_Debugger.View
             _sqLiteHelper = SqLiteHelper.GetInstance();
             _sqLiteHelper.InitDataBase();
             _connectionModels = _sqLiteHelper.QueryConnectionModelsByType(_selectedType);
-            if (_connectionModels == null)
+            if (_connectionModels.Count == 0)
             {
                 CenterListView.Visibility = Visibility.Collapsed;
                 EmptyPanel.Visibility = Visibility.Visible;
+                RightGridView.Visibility = Visibility.Collapsed;
+                RightEmptyPanel.Visibility = Visibility.Visible;
             }
             else
             {
                 CenterListView.Visibility = Visibility.Visible;
                 EmptyPanel.Visibility = Visibility.Collapsed;
+                RightGridView.Visibility = Visibility.Visible;
+                RightEmptyPanel.Visibility = Visibility.Collapsed;
             }
 
             //绑定数据
@@ -77,6 +81,12 @@ namespace Socket_Debugger.View
 
         private void DelButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (_connectionModels.Count == 0)
+            {
+                MessageBoxHelper.ShowError("无数据，无法删除！");
+                return;
+            }
+
             if (_selectedModel != null)
             {
                 _sqLiteHelper.DeleteConnectionModel(_selectedModel);

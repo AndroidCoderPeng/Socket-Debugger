@@ -88,15 +88,15 @@
             <!--  中间用户自定义功能列表  -->
             <StackPanel Grid.Column="2" Orientation="Vertical">
                 <Grid Background="White" Height="538">
-                    <ListView x:Name="CenterListView" Visibility="Collapsed"
-                              SelectedIndex="0" SelectionChanged="CenterListView_SelectionChanged"
-                              ItemTemplate="{StaticResource CenterListDataTemplate}" />
-
                     <StackPanel x:Name="EmptyPanel" Orientation="Vertical" VerticalAlignment="Center">
                         <Image Width="Auto" Height="Auto" Source="/Resources/Image/EmptyImage.png" Visibility="Visible" />
                         <TextBlock Margin="10,5" HorizontalAlignment="Center" FontSize="14" Text="没有已存在配置" />
                         <TextBlock Margin="10,5" HorizontalAlignment="Center" FontSize="14" Text="点击下方 + 按钮添加配置" />
                     </StackPanel>
+
+                    <ListView x:Name="CenterListView" Visibility="Collapsed"
+                              SelectedIndex="0" SelectionChanged="CenterListView_SelectionChanged"
+                              ItemTemplate="{StaticResource CenterListDataTemplate}" />
                 </Grid>
 
                 <!--  底部横线  -->
@@ -118,86 +118,93 @@
             <Border Grid.Column="3" Background="LightGray" Width="1" />
 
             <!--  右边功能列表  -->
-            <Grid Grid.Column="4">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*" />
-                    <RowDefinition Height="5.5*" />
-                    <RowDefinition Height="1.5*" />
-                </Grid.RowDefinitions>
+            <Grid Grid.Column="4" Background="White">
+                <StackPanel x:Name="RightEmptyPanel" Orientation="Vertical" VerticalAlignment="Center">
+                    <Image Width="Auto" Height="Auto" Source="/Resources/Image/EmptyImage.png" Visibility="Visible" />
+                    <TextBlock Margin="10,5" HorizontalAlignment="Center" FontSize="14" Text="未选中任何配置" />
+                </StackPanel>
 
-                <Grid x:Name="TopPanel" Grid.Row="0">
-                    <!--  2x3格子  -->
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <Grid x:Name="RightGridView" Background="#E8E9EA">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="5.5*" />
+                        <RowDefinition Height="1.5*" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock x:Name="ServerTextBlock" Grid.Row="0" Grid.Column="0"
-                               Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               FontSize="16" FontWeight="Bold" Foreground="#242424" Text="服务器" />
+                    <Grid x:Name="TopPanel" Grid.Row="0">
+                        <!--  2x3格子  -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                    <TextBlock x:Name="HostTextBlock" Grid.Row="1" Grid.Column="0"
-                               Margin="10,0" VerticalAlignment="Top" FontSize="12" Text="111.198.10.15:12208" />
+                        <TextBlock x:Name="ServerTextBlock" Grid.Row="0" Grid.Column="0"
+                                   Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                   FontSize="16" FontWeight="Bold" Foreground="#242424" Text="服务器" />
 
-                    <CheckBox x:Name="StatusTextBlock" Grid.Row="2" Grid.Column="0"
-                              Margin="10" HorizontalAlignment="Left" Content="已连接" IsChecked="True" />
+                        <TextBlock x:Name="HostTextBlock" Grid.Row="1" Grid.Column="0"
+                                   Margin="10,0" VerticalAlignment="Top" FontSize="12" Text="111.198.10.15:12208" />
 
-                    <Button x:Name="EditButton" Grid.Row="0" Grid.Column="1" Margin="10 5" Content="编辑"
-                            Style="{StaticResource RightFunctionButtonStyle}">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="5" />
-                                <Setter Property="BorderBrush" Value="White" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
+                        <CheckBox x:Name="StatusTextBlock" Grid.Row="2" Grid.Column="0"
+                                  Margin="10" HorizontalAlignment="Left" Content="已连接" IsChecked="True" />
 
-                    <Button x:Name="ConnectButton" Grid.Row="1" Grid.Column="1" Margin="10 0" Content="连接"
-                            Style="{StaticResource RightFunctionButtonStyle}">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="5" />
-                                <Setter Property="BorderBrush" Value="White" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
+                        <Button x:Name="EditButton" Grid.Row="0" Grid.Column="1" Margin="10 5" Content="编辑"
+                                Style="{StaticResource RightFunctionButtonStyle}">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5" />
+                                    <Setter Property="BorderBrush" Value="White" />
+                                </Style>
+                            </Button.Resources>
+                        </Button>
 
-                    <Button x:Name="ClearButton" Grid.Row="2" Grid.Column="1" Margin="10 0" Content="清空消息"
-                            Style="{StaticResource RightFunctionButtonStyle}">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="5" />
-                                <Setter Property="BorderBrush" Value="White" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                </Grid>
+                        <Button x:Name="ConnectButton" Grid.Row="1" Grid.Column="1" Margin="10 0" Content="连接"
+                                Style="{StaticResource RightFunctionButtonStyle}">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5" />
+                                    <Setter Property="BorderBrush" Value="White" />
+                                </Style>
+                            </Button.Resources>
+                        </Button>
 
-                <!--  中间通信界面  -->
-                <DockPanel Grid.Row="1" Background="White" />
+                        <Button x:Name="ClearButton" Grid.Row="2" Grid.Column="1" Margin="10 0" Content="清空消息"
+                                Style="{StaticResource RightFunctionButtonStyle}">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5" />
+                                    <Setter Property="BorderBrush" Value="White" />
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Grid>
 
-                <!--  底部用户通信输入栏  -->
-                <StackPanel Grid.Row="2" Orientation="Vertical" Background="White">
-                    <Border Background="LightGray" Height="1" />
+                    <!--  中间通信界面  -->
+                    <DockPanel Grid.Row="1" Background="White" />
 
-                    <StackPanel Orientation="Horizontal" Height="30" Background="#ECECEC">
-                        <RadioButton Content="文本" IsChecked="True" Margin="5 0 0 0" />
-                        <RadioButton Content="16进制" Margin="10 0" />
+                    <!--  底部用户通信输入栏  -->
+                    <StackPanel Grid.Row="2" Orientation="Vertical" Background="White">
+                        <Border Background="LightGray" Height="1" />
+
+                        <StackPanel Orientation="Horizontal" Height="30" Background="#ECECEC">
+                            <RadioButton Content="文本" IsChecked="True" Margin="5 0 0 0" />
+                            <RadioButton Content="16进制" Margin="10 0" />
+                        </StackPanel>
+
+                        <Border Background="LightGray" Height="1" />
+
+                        <TextBox Height="100" Padding="5 10"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" FontFamily="Consolas"
+                                 VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" FontSize="16"
+                                 BorderBrush="{x:Null}" BorderThickness="0" VerticalScrollBarVisibility="Auto"
+                                 materialDesign:HintAssist.Hint="请输入要发送的数据" />
                     </StackPanel>
-
-                    <Border Background="LightGray" Height="1" />
-
-                    <TextBox Height="100" Padding="5 10"
-                             Style="{StaticResource MaterialDesignOutlinedTextBox}" FontFamily="Consolas"
-                             VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" FontSize="16"
-                             BorderBrush="{x:Null}" BorderThickness="0" VerticalScrollBarVisibility="Auto"
-                             materialDesign:HintAssist.Hint="请输入要发送的数据" />
-                </StackPanel>
+                </Grid>
             </Grid>
         </Grid>
     </StackPanel>
