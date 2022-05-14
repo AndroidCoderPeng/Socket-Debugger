@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" Background="#EDF2F2" WindowStartupLocation="CenterScreen"
-        Title="添加配置" Height="455" Width="535" ResizeMode="NoResize">
+        Title="添加配置" Height="455" Width="535" ResizeMode="NoResize"
+        Loaded="Window_Loaded" Closed="Window_Closed">
 
     <Window.Resources>
         <Style x:Key="BottomFunctionButtonStyle" TargetType="Button"
@@ -105,7 +106,7 @@
 
                 <DockPanel Margin="50 10 50 0" Height="35">
                     <TextBlock Text="重复发送" Style="{StaticResource TextBlockStyle}" />
-                    <TextBox x:Name="MessageTextBox" Width="215" Style="{StaticResource TextBoxStyle}">
+                    <TextBox x:Name="MessageTextBox" IsEnabled="False" Width="215" Style="{StaticResource TextBoxStyle}">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5" />

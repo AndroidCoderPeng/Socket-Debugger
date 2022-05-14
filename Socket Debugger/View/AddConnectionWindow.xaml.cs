@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using Socket_Debugger.Model;
@@ -11,11 +12,15 @@ namespace Socket_Debugger.View
     /// </summary>
     public partial class AddConnectionWindow : Window
     {
-        public AddConnectionWindow(string selectedType)
+        public string SelectedType { set; get; }
+
+        // 是否保存成功
+        public bool IsSaved { private set; get; }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
-            SelectedTypeTextBox.Text = selectedType;
-            if (selectedType.Contains("WebSocket"))
+            SelectedTypeTextBox.Text = SelectedType;
+            if (SelectedType.Contains("WebSocket"))
             {
                 PortTextBox.Text = "/";
                 PortTextBox.IsEnabled = false;
@@ -36,12 +41,18 @@ namespace Socket_Debugger.View
             }
         }
 
+        public AddConnectionWindow()
+        {
+            InitializeComponent();
+        }
+
         private void RepeatCheckBox_OnClick(object sender, RoutedEventArgs e)
         {
-            CheckBox checkBox = (CheckBox) sender;
+            CheckBox checkBox = (CheckBox)sender;
+            MessageTextBox.IsEnabled = checkBox.IsChecked == true;
             TimeTextBox.IsEnabled = checkBox.IsChecked == true;
         }
-        
+
         // 保存连接配置事件
         private void SaveButton_OnClick(object sender, RoutedEventArgs e)
         {
@@ -109,6 +120,11 @@ namespace Socket_Debugger.View
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            IsSaved = true;
         }
     }
 }

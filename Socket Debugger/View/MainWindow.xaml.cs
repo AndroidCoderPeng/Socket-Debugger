@@ -12,48 +12,37 @@ namespace Socket_Debugger.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly SqLiteHelper _sqLiteHelper;
         private string _selectedType = "TCP客户端";
         private ObservableCollection<ConnectionModel> _connectionModels;
         private ConnectionModel _selectedModel;
 
-        public MainWindow()
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
             // 初始化左边功能列表
             List<LeftFunctionModel> leftFunctionModels = new List<LeftFunctionModel>
             {
-                new LeftFunctionModel {FunctionIcon = "CableData", FunctionName = "TCP客户端"},
-                new LeftFunctionModel {FunctionIcon = "CableData", FunctionName = "TCP服务端"},
-                new LeftFunctionModel {FunctionIcon = "AudioInputRca", FunctionName = "UDP客户端"},
-                new LeftFunctionModel {FunctionIcon = "AudioInputRca", FunctionName = "UDP服务端"},
-                new LeftFunctionModel {FunctionIcon = "LanConnect", FunctionName = "WebSocket\r客户端"},
-                new LeftFunctionModel {FunctionIcon = "LanConnect", FunctionName = "WebSocket\r服务端"}
+                new LeftFunctionModel { FunctionIcon = "CableData", FunctionName = "TCP客户端" },
+                new LeftFunctionModel { FunctionIcon = "CableData", FunctionName = "TCP服务端" },
+                new LeftFunctionModel { FunctionIcon = "AudioInputRca", FunctionName = "UDP客户端" },
+                new LeftFunctionModel { FunctionIcon = "AudioInputRca", FunctionName = "UDP服务端" },
+                new LeftFunctionModel { FunctionIcon = "LanConnect", FunctionName = "WebSocket\r客户端" },
+                new LeftFunctionModel { FunctionIcon = "LanConnect", FunctionName = "WebSocket\r服务端" }
             };
             //绑定数据
             LeftListView.ItemsSource = leftFunctionModels;
 
             // 初始化数据库
-            _sqLiteHelper = SqLiteHelper.GetInstance();
-            _sqLiteHelper.InitDataBase();
-            _connectionModels = _sqLiteHelper.QueryConnectionModelsByType(_selectedType);
-            if (_connectionModels.Count == 0)
-            {
-                CenterListView.Visibility = Visibility.Collapsed;
-                EmptyPanel.Visibility = Visibility.Visible;
-                RightGridView.Visibility = Visibility.Collapsed;
-                RightEmptyPanel.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                CenterListView.Visibility = Visibility.Visible;
-                EmptyPanel.Visibility = Visibility.Collapsed;
-                RightGridView.Visibility = Visibility.Visible;
-                RightEmptyPanel.Visibility = Visibility.Collapsed;
-            }
+            SqLiteHelper.GetInstance().InitDataBase();
+            _connectionModels = SqLiteHelper.GetInstance().QueryConnectionModelsByType(_selectedType);
+            InitView();
 
             //绑定数据
             CenterListView.ItemsSource = _connectionModels;
+        }
+
+        public MainWindow()
+        {
+            InitializeComponent();
         }
 
         private void LeftListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -62,6 +51,8 @@ namespace Socket_Debugger.View
             _selectedType = model.FunctionName.Contains("\r")
                 ? model.FunctionName.Replace("\r", "")
                 : model.FunctionName;
+            // _connectionModels = SqLiteHelper.GetInstance().QueryConnectionModelsByType(_selectedType);
+            // CenterListView.ItemsSource = _connectionModels;
         }
 
         private void CenterListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -75,8 +66,15 @@ namespace Socket_Debugger.View
 
         private void AddButton_OnClick(object sender, RoutedEventArgs e)
         {
-            AddConnectionWindow connectionWindow = new AddConnectionWindow(_selectedType);
+            AddConnectionWindow connectionWindow = new AddConnectionWindow
+            {
+                SelectedType = _selectedType
+            };
             connectionWindow.ShowDialog();
+            if (!connectionWindow.IsSaved) return;
+            _connectionModels = SqLiteHelper.GetInstance().QueryConnectionModelsByType(_selectedType);
+            CenterListView.ItemsSource = _connectionModels;
+            InitView();
         }
 
         private void DelButton_OnClick(object sender, RoutedEventArgs e)
@@ -89,14 +87,33 @@ namespace Socket_Debugger.View
 
             if (_selectedModel != null)
             {
-                _sqLiteHelper.DeleteConnectionModel(_selectedModel);
+                SqLiteHelper.GetInstance().DeleteConnectionModel(_selectedModel);
                 _connectionModels.Remove(_selectedModel);
                 // 删除数据之后重新绑定数据源
                 CenterListView.ItemsSource = _connectionModels;
+                InitView();
             }
             else
             {
                 MessageBoxHelper.ShowError("删除失败！");
+            }
+        }
+
+        private void InitView()
+        {
+            if (_connectionModels.Count == 0)
+            {
+                CenterListView.Visibility = Visibility.Collapsed;
+                EmptyPanel.Visibility = Visibility.Visible;
+                RightGridView.Visibility = Visibility.Collapsed;
+                RightEmptyPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CenterListView.Visibility = Visibility.Visible;
+                EmptyPanel.Visibility = Visibility.Collapsed;
+                RightGridView.Visibility = Visibility.Visible;
+                RightEmptyPanel.Visibility = Visibility.Collapsed;
             }
         }
     }
