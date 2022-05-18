@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using Socket_Debugger.Model;
 using Socket_Debugger.Utils;
 
-namespace Socket_Debugger.View
+namespace Socket_Debugger.Views
 {
     /// <summary>
     /// AddConnectionxaml 的交互逻辑
