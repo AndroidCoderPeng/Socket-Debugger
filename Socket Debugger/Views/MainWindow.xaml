@@ -35,8 +35,8 @@
         <!--数据模板，类似Android里面ListView的Adapter-->
         <DataTemplate x:Key="LeftListDataTemplate">
             <!--数据模板，类似Android里面的ListView的ItemView-->
-            <StackPanel Orientation="Horizontal" Height="45">
-                <TextBlock Text="{Binding FunctionIcon}" Width="35" Height="35"
+            <StackPanel Orientation="Horizontal" Height="55">
+                <TextBlock Text="{Binding FunctionIcon}" FontSize="18" FontFamily="/Resources/Fonts/#iconfont"
                            Foreground="#242424" VerticalAlignment="Center" />
                 <TextBlock Text="{Binding FunctionName}" VerticalAlignment="Center" Margin="10 0"
                            Foreground="#242424" FontSize="18" />
@@ -46,9 +46,9 @@
         <!--数据模板，类似Android里面ListView的Adapter-->
         <DataTemplate x:Key="CenterListDataTemplate">
             <!--数据模板，类似Android里面的ListView的ItemView-->
-            <StackPanel Orientation="Horizontal" Height="45">
-                <TextBlock Text="Laptop" Width="35" Height="35" Foreground="#242424"
-                           VerticalAlignment="Center" />
+            <StackPanel Orientation="Horizontal" Height="55">
+                <TextBlock Text="&#xe628;" FontSize="18" FontFamily="/Resources/Fonts/#iconfont"
+                           Foreground="#242424" VerticalAlignment="Center" />
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                     <TextBlock Text="{Binding Comment}" VerticalAlignment="Center"
                                Margin="10 5" Foreground="#242424" FontSize="16" />
@@ -71,9 +71,11 @@
         </Grid.ColumnDefinitions>
 
         <!--  左边功能列表  -->
-        <ListView x:Name="LeftListView" Grid.Column="0"
+        <ListView x:Name="LeftListView" Grid.Column="0" BorderThickness="0"
                   SelectedIndex="0" SelectionChanged="LeftListView_SelectionChanged"
-                  ItemTemplate="{StaticResource LeftListDataTemplate}" />
+                  ItemTemplate="{StaticResource LeftListDataTemplate}">
+            
+        </ListView>
 
         <!--  中间用户自定义功能列表  -->
         <Grid Grid.Column="1" Margin="1 0">
@@ -89,18 +91,22 @@
                     <TextBlock Margin="10,5" HorizontalAlignment="Center" FontSize="14" Text="点击下方 + 按钮添加配置" />
                 </StackPanel>
 
-                <ListView x:Name="CenterListView" Visibility="Collapsed"
+                <ListView x:Name="CenterListView" Visibility="Collapsed" BorderThickness="0"
                           SelectedIndex="0" SelectionChanged="CenterListView_SelectionChanged"
-                          ItemTemplate="{StaticResource CenterListDataTemplate}" />
+                          ItemTemplate="{StaticResource CenterListDataTemplate}">
+                    
+                </ListView>
             </Grid>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" Background="White" Height="30" Margin="0 1 0 0">
                 <Button Style="{StaticResource CenterBottomButtonStyle}" Click="AddButton_OnClick">
-                    <TextBlock Text="Plus" />
+                    <TextBlock Text="&#xe605;" FontFamily="/Resources/Fonts/#iconfont" Foreground="#242424"
+                               VerticalAlignment="Center" />
                 </Button>
 
                 <Button Style="{StaticResource CenterBottomButtonStyle}" Click="DelButton_OnClick">
-                    <TextBlock Text="Minus" />
+                    <TextBlock Text="&#xe604;" FontFamily="/Resources/Fonts/#iconfont" Foreground="#242424"
+                               VerticalAlignment="Center" />
                 </Button>
             </StackPanel>
         </Grid>
@@ -114,7 +120,7 @@
 
             <Grid x:Name="RightGridView" Background="#E8E9EA">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="145" />
+                    <RowDefinition Height="125" />
                     <RowDefinition Height="330" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
@@ -126,17 +132,17 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1.5*" />
-                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="1.75*" />
+                        <RowDefinition Height="2*" />
                         <RowDefinition Height="1.5*" />
                     </Grid.RowDefinitions>
 
                     <TextBlock x:Name="ServerTextBlock" Grid.Row="0" Grid.Column="0"
                                Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               FontSize="16" FontWeight="Bold" Foreground="#242424" Text="服务器" />
+                               FontSize="16" Foreground="#242424" Text="服务器" FontWeight="Bold"/>
 
                     <TextBlock x:Name="HostTextBlock" Grid.Row="1" Grid.Column="0"
-                               Margin="10,0" VerticalAlignment="Top" FontSize="12" Text="111.198.10.15:12208" />
+                               Margin="10,0" VerticalAlignment="Top" FontSize="14" Text="111.198.10.15:12208" />
 
                     <CheckBox x:Name="StatusTextBlock" Grid.Row="2" Grid.Column="0"
                               Margin="10" HorizontalAlignment="Left" Content="已连接" IsChecked="True" />

@@ -178,6 +178,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <Resource Include="Resources\Fonts\iconfont.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Image\Computer.png" />

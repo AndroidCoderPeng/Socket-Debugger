@@ -42,11 +42,13 @@
         </Style>
     </Window.Resources>
 
-    <StackPanel Orientation="Vertical">
-        <!--  顶部横线  -->
-        <Border Background="LightGray" Height="1" />
+    <Grid Margin="0 1 0 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-        <Border Background="#E8E9EA" CornerRadius="10" Width="485" Height="330" Margin="10 20">
+        <Border Grid.Row="0" Background="#E8E9EA" CornerRadius="10" Width="485" Height="330" Margin="10 20">
             <StackPanel Orientation="Vertical">
                 <DockPanel Margin="50 20 50 0" Height="35">
                     <TextBlock Text="备注" Style="{StaticResource TextBlockStyle}" />
@@ -90,9 +92,9 @@
                     </TextBox>
                 </DockPanel>
 
-                <DockPanel Margin="50 5 50 0" Height="35">
+                <DockPanel Margin="50 5 50 0">
                     <TextBlock Text="数据类型" Style="{StaticResource TextBlockStyle}" />
-                    <ComboBox x:Name="MsgTypeComboBox" FontSize="14">
+                    <ComboBox x:Name="MsgTypeComboBox" Height="35" FontSize="14" VerticalContentAlignment="Center">
                         <ComboBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="BorderThickness" Value="0" />
@@ -103,7 +105,7 @@
                     </ComboBox>
                 </DockPanel>
 
-                <DockPanel Margin="50 10 50 0" Height="35">
+                <DockPanel Margin="50 10 50 0">
                     <TextBlock Text="重复发送" Style="{StaticResource TextBlockStyle}" />
                     <TextBox x:Name="MessageTextBox" IsEnabled="False" Width="215"
                              Style="{StaticResource TextBoxStyle}">
@@ -114,7 +116,8 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <CheckBox x:Name="RepeatCheckBox" Width="80" Content="重复发送" Margin="5 0 0 0"
+                    <CheckBox x:Name="RepeatCheckBox" Width="80" Height="35" Content="重复发送" Margin="5 0 0 0"
+                              VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                               Click="RepeatCheckBox_OnClick" />
                 </DockPanel>
 
@@ -132,7 +135,7 @@
             </StackPanel>
         </Border>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="取消" Style="{StaticResource BottomFunctionButtonStyle}"
                     Click="CancelButton_OnClick" Cursor="Hand">
                 <Button.Resources>
@@ -153,5 +156,5 @@
                 </Button.Resources>
             </Button>
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </Window>

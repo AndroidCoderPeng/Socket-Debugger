@@ -21,12 +21,12 @@ namespace Socket_Debugger.Views
             // 初始化左边功能列表
             List<LeftFunctionModel> leftFunctionModels = new List<LeftFunctionModel>
             {
-                new LeftFunctionModel { FunctionIcon = "CableData", FunctionName = "TCP客户端" },
-                new LeftFunctionModel { FunctionIcon = "CableData", FunctionName = "TCP服务端" },
-                new LeftFunctionModel { FunctionIcon = "AudioInputRca", FunctionName = "UDP客户端" },
-                new LeftFunctionModel { FunctionIcon = "AudioInputRca", FunctionName = "UDP服务端" },
-                new LeftFunctionModel { FunctionIcon = "LanConnect", FunctionName = "WebSocket\r客户端" },
-                new LeftFunctionModel { FunctionIcon = "LanConnect", FunctionName = "WebSocket\r服务端" }
+                new LeftFunctionModel { FunctionIcon = "&#xe628;", FunctionName = "TCP客户端" },
+                new LeftFunctionModel { FunctionIcon = "&#xe628;", FunctionName = "TCP服务端" },
+                new LeftFunctionModel { FunctionIcon = "&#xe7b1;", FunctionName = "UDP客户端" },
+                new LeftFunctionModel { FunctionIcon = "&#xe7b1;", FunctionName = "UDP服务端" },
+                new LeftFunctionModel { FunctionIcon = "&#xe611;", FunctionName = "WebSocket\r客户端" },
+                new LeftFunctionModel { FunctionIcon = "&#xe611;", FunctionName = "WebSocket\r服务端" }
             };
             //绑定数据
             LeftListView.ItemsSource = leftFunctionModels;
