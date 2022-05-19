@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Socket_Debugger.Model;
@@ -18,19 +17,6 @@ namespace Socket_Debugger.Views
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            // 初始化左边功能列表
-            List<LeftFunctionModel> leftFunctionModels = new List<LeftFunctionModel>
-            {
-                new LeftFunctionModel { FunctionIcon = "&#xe628;", FunctionName = "TCP客户端" },
-                new LeftFunctionModel { FunctionIcon = "&#xe628;", FunctionName = "TCP服务端" },
-                new LeftFunctionModel { FunctionIcon = "&#xe7b1;", FunctionName = "UDP客户端" },
-                new LeftFunctionModel { FunctionIcon = "&#xe7b1;", FunctionName = "UDP服务端" },
-                new LeftFunctionModel { FunctionIcon = "&#xe611;", FunctionName = "WebSocket\r客户端" },
-                new LeftFunctionModel { FunctionIcon = "&#xe611;", FunctionName = "WebSocket\r服务端" }
-            };
-            //绑定数据
-            LeftListView.ItemsSource = leftFunctionModels;
-
             // 初始化数据库
             SqLiteHelper.GetInstance().InitDataBase();
             _connectionModels = SqLiteHelper.GetInstance().QueryConnectionModelsByType(_selectedType);
@@ -47,10 +33,10 @@ namespace Socket_Debugger.Views
 
         private void LeftListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!(LeftListView.SelectedItem is LeftFunctionModel model)) return;
-            _selectedType = model.FunctionName.Contains("\r")
-                ? model.FunctionName.Replace("\r", "")
-                : model.FunctionName;
+            // if (!(LeftListView.SelectedItem is LeftFunctionModel model)) return;
+            // _selectedType = model.FunctionName.Contains("\r")
+            //     ? model.FunctionName.Replace("\r", "")
+            //     : model.FunctionName;
             // _connectionModels = SqLiteHelper.GetInstance().QueryConnectionModelsByType(_selectedType);
             // CenterListView.ItemsSource = _connectionModels;
         }

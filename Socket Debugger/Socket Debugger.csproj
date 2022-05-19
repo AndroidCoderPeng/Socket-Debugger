@@ -178,10 +178,8 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <Resource Include="Resources\Fonts\iconfont.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Image\Computer.png" />
     <Resource Include="Resources\Image\Net.ico" />
     <Resource Include="Resources\Image\EmptyImage.png" />
   </ItemGroup>
@@ -196,6 +194,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\Monitor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\iconfont.ttf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

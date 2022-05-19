@@ -3,5 +3,73 @@
                         xmlns:prism="http://prismlibrary.com/"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>
+        <!--去掉RadioButton前面的圆圈-->
+        <Style x:Key="LeftRadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Grid Background="Transparent">
+                            <Border x:Name="BackgroundBorder" />
+                            <Border x:Name="ThickBorder" Margin="3 15"/>
+                            <ContentPresenter />
+                        </Grid>
+
+                        <!--触发器-->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F5F5F5" TargetName="BackgroundBorder" />
+                            </Trigger>
+
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Foreground" Value="Red" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="Background" Value="Red" TargetName="BackgroundBorder" />
+                                <Setter Property="Opacity" Value="0.05" TargetName="BackgroundBorder" />
+                                <Setter Property="BorderThickness" Value="3 0 0 0" TargetName="ThickBorder" />
+                                <Setter Property="BorderBrush" Value="Red" TargetName="ThickBorder" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="LeftTextBlockIconStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#242424" />
+            <Setter Property="FontFamily" Value="/Resources/#iconfont" />
+            <Setter Property="FontSize" Value="26" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <!--左侧功能列表TextBlock样式-->
+        <Style x:Key="LeftTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#242424" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="8 0" />
+        </Style>
+
+        <Style x:Key="CenterBottomButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="#242424" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Margin" Value="1 0" />
+        </Style>
+
+        <Style x:Key="RightFunctionButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="26" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="#242424" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10 2" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
     </Application.Resources>
 </prism:PrismApplication>
