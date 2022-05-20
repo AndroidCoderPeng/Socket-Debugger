@@ -21,12 +21,11 @@
                             </Trigger>
 
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Foreground" Value="Red" />
                                 <Setter Property="FontWeight" Value="Bold" />
-                                <Setter Property="Background" Value="Red" TargetName="BackgroundBorder" />
+                                <Setter Property="Background" Value="Cyan" TargetName="BackgroundBorder" />
                                 <Setter Property="Opacity" Value="0.05" TargetName="BackgroundBorder" />
-                                <Setter Property="BorderThickness" Value="3 0 0 0" TargetName="ThickBorder" />
-                                <Setter Property="BorderBrush" Value="Red" TargetName="ThickBorder" />
+                                <Setter Property="BorderThickness" Value="5 0 0 0" TargetName="ThickBorder" />
+                                <Setter Property="BorderBrush" Value="Cyan" TargetName="ThickBorder" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

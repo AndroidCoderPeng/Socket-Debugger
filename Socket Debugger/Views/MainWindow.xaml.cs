@@ -26,6 +26,24 @@ namespace Socket_Debugger.Views
             CenterListView.ItemsSource = _connectionModels;
         }
 
+        private void InitView()
+        {
+            if (_connectionModels.Count == 0)
+            {
+                CenterListView.Visibility = Visibility.Collapsed;
+                EmptyPanel.Visibility = Visibility.Visible;
+                RightGridView.Visibility = Visibility.Collapsed;
+                RightEmptyPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CenterListView.Visibility = Visibility.Visible;
+                EmptyPanel.Visibility = Visibility.Collapsed;
+                RightGridView.Visibility = Visibility.Visible;
+                RightEmptyPanel.Visibility = Visibility.Collapsed;
+            }
+        }
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -82,24 +100,6 @@ namespace Socket_Debugger.Views
             else
             {
                 MessageBoxHelper.ShowError("删除失败！");
-            }
-        }
-
-        private void InitView()
-        {
-            if (_connectionModels.Count == 0)
-            {
-                CenterListView.Visibility = Visibility.Collapsed;
-                EmptyPanel.Visibility = Visibility.Visible;
-                RightGridView.Visibility = Visibility.Collapsed;
-                RightEmptyPanel.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                CenterListView.Visibility = Visibility.Visible;
-                EmptyPanel.Visibility = Visibility.Collapsed;
-                RightGridView.Visibility = Visibility.Visible;
-                RightEmptyPanel.Visibility = Visibility.Collapsed;
             }
         }
     }

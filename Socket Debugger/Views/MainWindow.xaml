@@ -12,7 +12,7 @@
         <!--数据模板，类似Android里面ListView的Adapter-->
         <DataTemplate x:Key="CenterListDataTemplate">
             <!--数据模板，类似Android里面的ListView的ItemView-->
-            <StackPanel Orientation="Horizontal" Height="55">
+            <StackPanel Orientation="Horizontal" Height="60">
                 <Image Width="35" Height="35" Source="/Resources/Image/Monitor.png" />
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                     <TextBlock Text="{Binding Comment}" VerticalAlignment="Center"
@@ -80,13 +80,13 @@
             <RadioButton Style="{StaticResource LeftRadioButtonStyle}">
                 <DockPanel Margin="10 0 0 0">
                     <TextBlock Text="&#xe662;" Style="{StaticResource LeftTextBlockIconStyle}" />
-                    <TextBlock Text="WebSocket客户端" Style="{StaticResource LeftTextBlockStyle}" TextWrapping="Wrap" />
+                    <TextBlock Text="WebSocket客户端" Style="{StaticResource LeftTextBlockStyle}" />
                 </DockPanel>
             </RadioButton>
             <RadioButton Style="{StaticResource LeftRadioButtonStyle}">
                 <DockPanel Margin="10 0 0 0">
                     <TextBlock Text="&#xe662;" Style="{StaticResource LeftTextBlockIconStyle}" />
-                    <TextBlock Text="WebSocket服务端" Style="{StaticResource LeftTextBlockStyle}" TextWrapping="Wrap" />
+                    <TextBlock Text="WebSocket服务端" Style="{StaticResource LeftTextBlockStyle}" />
                 </DockPanel>
             </RadioButton>
         </ListBox>
@@ -95,7 +95,7 @@
         <Grid Grid.Column="1" Margin="1 0">
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition Height="30" />
+                <RowDefinition Height="35" />
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Background="White">
@@ -108,25 +108,22 @@
                 <ListView x:Name="CenterListView" Visibility="Collapsed" BorderThickness="0"
                           SelectedIndex="0" SelectionChanged="CenterListView_SelectionChanged"
                           ItemTemplate="{StaticResource CenterListDataTemplate}">
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                             <Setter Property="Height" Value="60" />
                         </Style>
-                    </ListBox.ItemContainerStyle>
+                    </ListView.ItemContainerStyle>
                 </ListView>
             </Grid>
 
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Background="White" Height="30" Margin="0 1 0 0">
-                <Button Style="{StaticResource CenterBottomButtonStyle}" Click="AddButton_OnClick">
-                    <TextBlock Text="&#xe605;" FontFamily="/Resources/#iconfont" Foreground="#242424"
-                               VerticalAlignment="Center" />
-                </Button>
-
-                <Button Style="{StaticResource CenterBottomButtonStyle}" Click="DelButton_OnClick">
-                    <TextBlock Text="&#xe604;" FontFamily="/Resources/#iconfont" Foreground="#242424"
-                               VerticalAlignment="Center" />
-                </Button>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Background="White" Margin="0 1 0 0">
+                <Button BorderThickness="0" Background="Transparent" Content="+" Width="35" FontWeight="Normal"
+                        Foreground="#242424" FontSize="26" Click="AddButton_OnClick" />
+                <Border BorderBrush="LightGray" BorderThickness="0.55" />
+                <Button BorderThickness="0" Background="Transparent" Content="-" Width="35" FontWeight="Normal"
+                        Foreground="#242424" FontSize="26" Click="DelButton_OnClick" />
+                <Border BorderBrush="LightGray" BorderThickness="0.55" />
             </StackPanel>
         </Grid>
 
@@ -137,7 +134,7 @@
                 <TextBlock Margin="10,5" HorizontalAlignment="Center" FontSize="14" Text="未选中任何配置" />
             </StackPanel>
 
-            <Grid x:Name="RightGridView" Background="#E8E9EA">
+            <Grid x:Name="RightGridView" Background="#ECECEC">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="125" />
                     <RowDefinition Height="330" />
