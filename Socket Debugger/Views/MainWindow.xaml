@@ -37,7 +37,7 @@
 
         <!--  左边功能列表  -->
         <ListBox x:Name="LeftListBox" Grid.Column="0" BorderThickness="0"
-                 SelectedIndex="0" SelectionChanged="LeftListView_SelectionChanged">
+                 SelectionChanged="LeftListBox_SelectionChanged">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />

@@ -50,6 +50,7 @@ namespace Socket_Debugger.Utils
             {
                 collectionResult.Add(model);
             }
+
             return collectionResult;
         }
 
@@ -76,7 +77,7 @@ namespace Socket_Debugger.Utils
         {
             _connection.Delete(model);
         }
-        
+
         //根据uuid修改数据
         public void UpdateConnectionModelByUuid(string uuid)
         {
@@ -86,7 +87,7 @@ namespace Socket_Debugger.Utils
                 _connection.Update(connectionModel);
             }
         }
-        
+
         //根据ConnectionModel实体类修改数据
         public void UpdateConnectionModel(ConnectionModel model)
         {

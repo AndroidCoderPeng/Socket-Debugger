@@ -19,7 +19,7 @@ namespace Socket_Debugger.Model
         public string MsgType { get; set; }
 
         public string Message { get; set; }
-        
+
         public int TimePeriod { get; set; }
     }
 }

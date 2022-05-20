@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
 using System;
+
 // ReSharper disable InheritdocConsiderUsage
 
 #pragma warning disable 1591
@@ -39,17 +40,19 @@ namespace Socket_Debugger.Annotations
     /// </summary>
     /// <example><code>
     /// [CanBeNull] object Test() => null;
-    /// 
+    ///
     /// void UseTest() {
     ///   var p = Test();
     ///   var s = p.ToString(); // Warning: Possible 'System.NullReferenceException'
     /// }
     /// </code></example>
     [AttributeUsage(
-    AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-    AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
-    AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
-    public sealed class CanBeNullAttribute : Attribute { }
+        AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
+        AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
+        AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
+    public sealed class CanBeNullAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Indicates that the value of the marked element can never be <c>null</c>.
@@ -60,10 +63,12 @@ namespace Socket_Debugger.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(
-      AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-      AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
-      AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
-    public sealed class NotNullAttribute : Attribute { }
+        AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
+        AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
+        AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
+    public sealed class NotNullAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Can be applied to symbols of types derived from IEnumerable as well as to symbols of Task
@@ -80,9 +85,11 @@ namespace Socket_Debugger.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(
-      AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-      AttributeTargets.Delegate | AttributeTargets.Field)]
-    public sealed class ItemNotNullAttribute : Attribute { }
+        AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
+        AttributeTargets.Delegate | AttributeTargets.Field)]
+    public sealed class ItemNotNullAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Can be applied to symbols of types derived from IEnumerable as well as to symbols of Task
@@ -100,9 +107,11 @@ namespace Socket_Debugger.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(
-      AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-      AttributeTargets.Delegate | AttributeTargets.Field)]
-    public sealed class ItemCanBeNullAttribute : Attribute { }
+        AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
+        AttributeTargets.Delegate | AttributeTargets.Field)]
+    public sealed class ItemCanBeNullAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Indicates that the marked method builds string by the format pattern and (optional) arguments.
@@ -112,14 +121,14 @@ namespace Socket_Debugger.Annotations
     /// <example><code>
     /// [StringFormatMethod("message")]
     /// void ShowError(string message, params object[] args) { /* do something */ }
-    /// 
+    ///
     /// void Foo() {
     ///   ShowError("Failed: {0}"); // Warning: Non-existing argument in format string
     /// }
     /// </code></example>
     [AttributeUsage(
-      AttributeTargets.Constructor | AttributeTargets.Method |
-      AttributeTargets.Property | AttributeTargets.Delegate)]
+        AttributeTargets.Constructor | AttributeTargets.Method |
+        AttributeTargets.Property | AttributeTargets.Delegate)]
     public sealed class StringFormatMethodAttribute : Attribute
     {
         /// <param name="formatParameterName">
@@ -161,8 +170,8 @@ namespace Socket_Debugger.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(
-      AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.Field,
-      AllowMultiple = true)]
+        AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.Field,
+        AllowMultiple = true)]
     public sealed class ValueProviderAttribute : Attribute
     {
         public ValueProviderAttribute([NotNull] string name)
@@ -186,9 +195,9 @@ namespace Socket_Debugger.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(
-      AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property |
-      AttributeTargets.Method | AttributeTargets.Delegate,
-      AllowMultiple = true)]
+        AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property |
+        AttributeTargets.Method | AttributeTargets.Delegate,
+        AllowMultiple = true)]
     public sealed class ValueRangeAttribute : Attribute
     {
         public object From { get; }
@@ -228,9 +237,11 @@ namespace Socket_Debugger.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(
-      AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property |
-      AttributeTargets.Method | AttributeTargets.Delegate)]
-    public sealed class NonNegativeValueAttribute : Attribute { }
+        AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property |
+        AttributeTargets.Method | AttributeTargets.Delegate)]
+    public sealed class NonNegativeValueAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Indicates that the function argument should be a string literal and match one
@@ -244,7 +255,9 @@ namespace Socket_Debugger.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(AttributeTargets.Parameter)]
-    public sealed class InvokerParameterNameAttribute : Attribute { }
+    public sealed class InvokerParameterNameAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Indicates that the method is contained in a type that implements
@@ -264,12 +277,12 @@ namespace Socket_Debugger.Annotations
     /// <example><code>
     /// public class Foo : INotifyPropertyChanged {
     ///   public event PropertyChangedEventHandler PropertyChanged;
-    /// 
+    ///
     ///   [NotifyPropertyChangedInvocator]
     ///   protected virtual void NotifyChanged(string propertyName) { ... }
     ///
     ///   string _name;
-    /// 
+    ///
     ///   public string Name {
     ///     get { return _name; }
     ///     set { _name = value; NotifyChanged("LastName"); /* Warning */ }
@@ -287,7 +300,10 @@ namespace Socket_Debugger.Annotations
     [AttributeUsage(AttributeTargets.Method)]
     public sealed class NotifyPropertyChangedInvocatorAttribute : Attribute
     {
-        public NotifyPropertyChangedInvocatorAttribute() { }
+        public NotifyPropertyChangedInvocatorAttribute()
+        {
+        }
+
         public NotifyPropertyChangedInvocatorAttribute([NotNull] string parameterName)
         {
             ParameterName = parameterName;
@@ -344,7 +360,9 @@ namespace Socket_Debugger.Annotations
     public sealed class ContractAnnotationAttribute : Attribute
     {
         public ContractAnnotationAttribute([NotNull] string contract)
-          : this(contract, false) { }
+            : this(contract, false)
+        {
+        }
 
         public ContractAnnotationAttribute([NotNull] string contract, bool forceFullStates)
         {
@@ -369,7 +387,9 @@ namespace Socket_Debugger.Annotations
     [AttributeUsage(AttributeTargets.All)]
     public sealed class LocalizationRequiredAttribute : Attribute
     {
-        public LocalizationRequiredAttribute() : this(true) { }
+        public LocalizationRequiredAttribute() : this(true)
+        {
+        }
 
         public LocalizationRequiredAttribute(bool required)
         {
@@ -388,7 +408,7 @@ namespace Socket_Debugger.Annotations
     /// <example><code>
     /// [CannotApplyEqualityOperator]
     /// class NoEquality { }
-    /// 
+    ///
     /// class UsesNoEquality {
     ///   void Test() {
     ///     var ca1 = new NoEquality();
@@ -400,7 +420,9 @@ namespace Socket_Debugger.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(AttributeTargets.Interface | AttributeTargets.Class | AttributeTargets.Struct)]
-    public sealed class CannotApplyEqualityOperatorAttribute : Attribute { }
+    public sealed class CannotApplyEqualityOperatorAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// When applied to a target attribute, specifies a requirement for any type marked
@@ -409,7 +431,7 @@ namespace Socket_Debugger.Annotations
     /// <example><code>
     /// [BaseTypeRequired(typeof(IComponent)] // Specify requirement
     /// class ComponentAttribute : Attribute { }
-    /// 
+    ///
     /// [Component] // ComponentAttribute requires implementing IComponent interface
     /// class MyComponent : IComponent { }
     /// </code></example>
@@ -433,13 +455,19 @@ namespace Socket_Debugger.Annotations
     public sealed class UsedImplicitlyAttribute : Attribute
     {
         public UsedImplicitlyAttribute()
-          : this(ImplicitUseKindFlags.Default, ImplicitUseTargetFlags.Default) { }
+            : this(ImplicitUseKindFlags.Default, ImplicitUseTargetFlags.Default)
+        {
+        }
 
         public UsedImplicitlyAttribute(ImplicitUseKindFlags useKindFlags)
-          : this(useKindFlags, ImplicitUseTargetFlags.Default) { }
+            : this(useKindFlags, ImplicitUseTargetFlags.Default)
+        {
+        }
 
         public UsedImplicitlyAttribute(ImplicitUseTargetFlags targetFlags)
-          : this(ImplicitUseKindFlags.Default, targetFlags) { }
+            : this(ImplicitUseKindFlags.Default, targetFlags)
+        {
+        }
 
         public UsedImplicitlyAttribute(ImplicitUseKindFlags useKindFlags, ImplicitUseTargetFlags targetFlags)
         {
@@ -462,13 +490,19 @@ namespace Socket_Debugger.Annotations
     public sealed class MeansImplicitUseAttribute : Attribute
     {
         public MeansImplicitUseAttribute()
-          : this(ImplicitUseKindFlags.Default, ImplicitUseTargetFlags.Default) { }
+            : this(ImplicitUseKindFlags.Default, ImplicitUseTargetFlags.Default)
+        {
+        }
 
         public MeansImplicitUseAttribute(ImplicitUseKindFlags useKindFlags)
-          : this(useKindFlags, ImplicitUseTargetFlags.Default) { }
+            : this(useKindFlags, ImplicitUseTargetFlags.Default)
+        {
+        }
 
         public MeansImplicitUseAttribute(ImplicitUseTargetFlags targetFlags)
-          : this(ImplicitUseKindFlags.Default, targetFlags) { }
+            : this(ImplicitUseKindFlags.Default, targetFlags)
+        {
+        }
 
         public MeansImplicitUseAttribute(ImplicitUseKindFlags useKindFlags, ImplicitUseTargetFlags targetFlags)
         {
@@ -489,15 +523,19 @@ namespace Socket_Debugger.Annotations
     public enum ImplicitUseKindFlags
     {
         Default = Access | Assign | InstantiatedWithFixedConstructorSignature,
+
         /// <summary>Only entity marked with attribute considered used.</summary>
         Access = 1,
+
         /// <summary>Indicates implicit assignment to a member.</summary>
         Assign = 2,
+
         /// <summary>
         /// Indicates implicit instantiation of a type with fixed constructor signature.
         /// That means any unused constructor parameters won't be reported as such.
         /// </summary>
         InstantiatedWithFixedConstructorSignature = 4,
+
         /// <summary>Indicates implicit instantiation of a type.</summary>
         InstantiatedNoFixedConstructorSignature = 8,
     }
@@ -511,10 +549,13 @@ namespace Socket_Debugger.Annotations
     {
         Default = Itself,
         Itself = 1,
+
         /// <summary>Members of entity marked with attribute are considered used.</summary>
         Members = 2,
+
         /// <summary> Inherited entities are considered used. </summary>
         WithInheritors = 4,
+
         /// <summary>Entity marked with attribute and all its members considered used.</summary>
         WithMembers = Itself | Members
     }
@@ -527,7 +568,9 @@ namespace Socket_Debugger.Annotations
     [AttributeUsage(AttributeTargets.All, Inherited = false)]
     public sealed class PublicAPIAttribute : Attribute
     {
-        public PublicAPIAttribute() { }
+        public PublicAPIAttribute()
+        {
+        }
 
         public PublicAPIAttribute([NotNull] string comment)
         {
@@ -543,7 +586,9 @@ namespace Socket_Debugger.Annotations
     /// If the parameter is an enumerable, indicates that it is enumerated while the method is executed.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter)]
-    public sealed class InstantHandleAttribute : Attribute { }
+    public sealed class InstantHandleAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Indicates that a method does not make any observable state changes.
@@ -551,13 +596,15 @@ namespace Socket_Debugger.Annotations
     /// </summary>
     /// <example><code>
     /// [Pure] int Multiply(int x, int y) => x * y;
-    /// 
+    ///
     /// void M() {
     ///   Multiply(123, 42); // Warning: Return value of pure method is not used
     /// }
     /// </code></example>
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class PureAttribute : Attribute { }
+    public sealed class PureAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Indicates that the return value of the method invocation must be used.
@@ -573,7 +620,9 @@ namespace Socket_Debugger.Annotations
     [AttributeUsage(AttributeTargets.Method)]
     public sealed class MustUseReturnValueAttribute : Attribute
     {
-        public MustUseReturnValueAttribute() { }
+        public MustUseReturnValueAttribute()
+        {
+        }
 
         public MustUseReturnValueAttribute([NotNull] string justification)
         {
@@ -591,7 +640,7 @@ namespace Socket_Debugger.Annotations
     /// <example><code>
     /// class Foo {
     ///   [ProvidesContext] IBarService _barService = ...;
-    /// 
+    ///
     ///   void ProcessNode(INode node) {
     ///     DoSomething(node, node.GetGlobalServices().Bar);
     ///     //              ^ Warning: use value of '_barService' field
@@ -599,9 +648,12 @@ namespace Socket_Debugger.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(
-      AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Parameter | AttributeTargets.Method |
-      AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.GenericParameter)]
-    public sealed class ProvidesContextAttribute : Attribute { }
+        AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Parameter | AttributeTargets.Method |
+        AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct |
+        AttributeTargets.GenericParameter)]
+    public sealed class ProvidesContextAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Indicates that a parameter is a path to a file or a folder within a web project.
@@ -610,7 +662,9 @@ namespace Socket_Debugger.Annotations
     [AttributeUsage(AttributeTargets.Parameter)]
     public sealed class PathReferenceAttribute : Attribute
     {
-        public PathReferenceAttribute() { }
+        public PathReferenceAttribute()
+        {
+        }
 
         public PathReferenceAttribute([NotNull, PathReference] string basePath)
         {
@@ -644,7 +698,9 @@ namespace Socket_Debugger.Annotations
     /// </code>
     /// </example>
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class SourceTemplateAttribute : Attribute { }
+    public sealed class SourceTemplateAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Allows specifying a macro for a parameter of a <see cref="SourceTemplateAttribute">source template</see>.
@@ -681,7 +737,8 @@ namespace Socket_Debugger.Annotations
         /// Allows specifying a macro that will be executed for a <see cref="SourceTemplateAttribute">source template</see>
         /// parameter when the template is expanded.
         /// </summary>
-        [CanBeNull] public string Expression { get; set; }
+        [CanBeNull]
+        public string Expression { get; set; }
 
         /// <summary>
         /// Allows specifying which occurrence of the target parameter becomes editable when the template is deployed.
@@ -697,10 +754,12 @@ namespace Socket_Debugger.Annotations
         /// Identifies the target parameter of a <see cref="SourceTemplateAttribute">source template</see> if the
         /// <see cref="MacroAttribute"/> is applied on a template method.
         /// </summary>
-        [CanBeNull] public string Target { get; set; }
+        [CanBeNull]
+        public string Target { get; set; }
     }
 
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property,
+        AllowMultiple = true)]
     public sealed class AspMvcAreaMasterLocationFormatAttribute : Attribute
     {
         public AspMvcAreaMasterLocationFormatAttribute([NotNull] string format)
@@ -711,7 +770,8 @@ namespace Socket_Debugger.Annotations
         [NotNull] public string Format { get; }
     }
 
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property,
+        AllowMultiple = true)]
     public sealed class AspMvcAreaPartialViewLocationFormatAttribute : Attribute
     {
         public AspMvcAreaPartialViewLocationFormatAttribute([NotNull] string format)
@@ -722,7 +782,8 @@ namespace Socket_Debugger.Annotations
         [NotNull] public string Format { get; }
     }
 
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property,
+        AllowMultiple = true)]
     public sealed class AspMvcAreaViewLocationFormatAttribute : Attribute
     {
         public AspMvcAreaViewLocationFormatAttribute([NotNull] string format)
@@ -733,7 +794,8 @@ namespace Socket_Debugger.Annotations
         [NotNull] public string Format { get; }
     }
 
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property,
+        AllowMultiple = true)]
     public sealed class AspMvcMasterLocationFormatAttribute : Attribute
     {
         public AspMvcMasterLocationFormatAttribute([NotNull] string format)
@@ -744,7 +806,8 @@ namespace Socket_Debugger.Annotations
         [NotNull] public string Format { get; }
     }
 
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property,
+        AllowMultiple = true)]
     public sealed class AspMvcPartialViewLocationFormatAttribute : Attribute
     {
         public AspMvcPartialViewLocationFormatAttribute([NotNull] string format)
@@ -755,7 +818,8 @@ namespace Socket_Debugger.Annotations
         [NotNull] public string Format { get; }
     }
 
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property,
+        AllowMultiple = true)]
     public sealed class AspMvcViewLocationFormatAttribute : Attribute
     {
         public AspMvcViewLocationFormatAttribute([NotNull] string format)
@@ -772,10 +836,13 @@ namespace Socket_Debugger.Annotations
     /// implicitly from the context. Use this attribute for custom wrappers similar to
     /// <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String)</c>.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field |
+                    AttributeTargets.Property)]
     public sealed class AspMvcActionAttribute : Attribute
     {
-        public AspMvcActionAttribute() { }
+        public AspMvcActionAttribute()
+        {
+        }
 
         public AspMvcActionAttribute([NotNull] string anonymousProperty)
         {
@@ -793,7 +860,9 @@ namespace Socket_Debugger.Annotations
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class AspMvcAreaAttribute : Attribute
     {
-        public AspMvcAreaAttribute() { }
+        public AspMvcAreaAttribute()
+        {
+        }
 
         public AspMvcAreaAttribute([NotNull] string anonymousProperty)
         {
@@ -809,10 +878,13 @@ namespace Socket_Debugger.Annotations
     /// implicitly from the context. Use this attribute for custom wrappers similar to
     /// <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String, String)</c>.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field |
+                    AttributeTargets.Property)]
     public sealed class AspMvcControllerAttribute : Attribute
     {
-        public AspMvcControllerAttribute() { }
+        public AspMvcControllerAttribute()
+        {
+        }
 
         public AspMvcControllerAttribute([NotNull] string anonymousProperty)
         {
@@ -827,14 +899,18 @@ namespace Socket_Debugger.Annotations
     /// for custom wrappers similar to <c>System.Web.Mvc.Controller.View(String, String)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcMasterAttribute : Attribute { }
+    public sealed class AspMvcMasterAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// ASP.NET MVC attribute. Indicates that the marked parameter is an MVC model type. Use this attribute
     /// for custom wrappers similar to <c>System.Web.Mvc.Controller.View(String, Object)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter)]
-    public sealed class AspMvcModelTypeAttribute : Attribute { }
+    public sealed class AspMvcModelTypeAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC
@@ -842,14 +918,19 @@ namespace Socket_Debugger.Annotations
     /// from the context. Use this attribute for custom wrappers similar to
     /// <c>System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper, String)</c>.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcPartialViewAttribute : Attribute { }
+    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field |
+                    AttributeTargets.Property)]
+    public sealed class AspMvcPartialViewAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// ASP.NET MVC attribute. Allows disabling inspections for MVC views within a class or a method.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public sealed class AspMvcSuppressViewErrorAttribute : Attribute { }
+    public sealed class AspMvcSuppressViewErrorAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// ASP.NET MVC attribute. Indicates that a parameter is an MVC display template.
@@ -857,7 +938,9 @@ namespace Socket_Debugger.Annotations
     /// <c>System.Web.Mvc.Html.DisplayExtensions.DisplayForModel(HtmlHelper, String)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcDisplayTemplateAttribute : Attribute { }
+    public sealed class AspMvcDisplayTemplateAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// ASP.NET MVC attribute. Indicates that the marked parameter is an MVC editor template.
@@ -865,7 +948,9 @@ namespace Socket_Debugger.Annotations
     /// <c>System.Web.Mvc.Html.EditorExtensions.EditorForModel(HtmlHelper, String)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcEditorTemplateAttribute : Attribute { }
+    public sealed class AspMvcEditorTemplateAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// ASP.NET MVC attribute. Indicates that the marked parameter is an MVC template.
@@ -873,7 +958,9 @@ namespace Socket_Debugger.Annotations
     /// <c>System.ComponentModel.DataAnnotations.UIHintAttribute(System.String)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcTemplateAttribute : Attribute { }
+    public sealed class AspMvcTemplateAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
@@ -881,22 +968,30 @@ namespace Socket_Debugger.Annotations
     /// from the context. Use this attribute for custom wrappers similar to
     /// <c>System.Web.Mvc.Controller.View(Object)</c>.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcViewAttribute : Attribute { }
+    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field |
+                    AttributeTargets.Property)]
+    public sealed class AspMvcViewAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
     /// is an MVC view component name.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcViewComponentAttribute : Attribute { }
+    public sealed class AspMvcViewComponentAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
     /// is an MVC view component view. If applied to a method, the MVC view component view name is default.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcViewComponentViewAttribute : Attribute { }
+    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field |
+                    AttributeTargets.Property)]
+    public sealed class AspMvcViewComponentViewAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// ASP.NET MVC attribute. When applied to a parameter of an attribute,
@@ -910,12 +1005,16 @@ namespace Socket_Debugger.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Property)]
-    public sealed class AspMvcActionSelectorAttribute : Attribute { }
+    public sealed class AspMvcActionSelectorAttribute : Attribute
+    {
+    }
 
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.Field)]
     public sealed class HtmlElementAttributesAttribute : Attribute
     {
-        public HtmlElementAttributesAttribute() { }
+        public HtmlElementAttributesAttribute()
+        {
+        }
 
         public HtmlElementAttributesAttribute([NotNull] string name)
         {
@@ -942,7 +1041,9 @@ namespace Socket_Debugger.Annotations
     /// <c>System.Web.WebPages.WebPageBase.RenderSection(String)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method)]
-    public sealed class RazorSectionAttribute : Attribute { }
+    public sealed class RazorSectionAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Indicates how method, constructor invocation, or property access
@@ -991,10 +1092,13 @@ namespace Socket_Debugger.Annotations
     {
         /// <summary>Method does not use or modify content of the collection.</summary>
         None = 0,
+
         /// <summary>Method only reads content of the collection but does not modify it.</summary>
         Read = 1,
+
         /// <summary>Method can change content of the collection but does not add new elements.</summary>
         ModifyExistingContent = 2,
+
         /// <summary>Method can add new elements to the collection.</summary>
         UpdatedContent = ModifyExistingContent | 4
     }
@@ -1005,7 +1109,9 @@ namespace Socket_Debugger.Annotations
     /// <see cref="AssertionConditionAttribute"/> attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class AssertionMethodAttribute : Attribute { }
+    public sealed class AssertionMethodAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Indicates the condition parameter of the assertion method. The method itself should be
@@ -1031,10 +1137,13 @@ namespace Socket_Debugger.Annotations
     {
         /// <summary>Marked parameter should be evaluated to true.</summary>
         IS_TRUE = 0,
+
         /// <summary>Marked parameter should be evaluated to false.</summary>
         IS_FALSE = 1,
+
         /// <summary>Marked parameter should be evaluated to null value.</summary>
         IS_NULL = 2,
+
         /// <summary>Marked parameter should be evaluated to not null value.</summary>
         IS_NOT_NULL = 3,
     }
@@ -1045,7 +1154,9 @@ namespace Socket_Debugger.Annotations
     /// </summary>
     [Obsolete("Use [ContractAnnotation('=> halt')] instead")]
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class TerminatesProgramAttribute : Attribute { }
+    public sealed class TerminatesProgramAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Indicates that method is pure LINQ method, with postponed enumeration (like Enumerable.Select,
@@ -1053,7 +1164,9 @@ namespace Socket_Debugger.Annotations
     /// of delegate type by analyzing LINQ method chains.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class LinqTunnelAttribute : Attribute { }
+    public sealed class LinqTunnelAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Indicates that IEnumerable passed as a parameter is not enumerated.
@@ -1064,7 +1177,7 @@ namespace Socket_Debugger.Annotations
     /// {
     ///   // custom check for null but no enumeration
     /// }
-    /// 
+    ///
     /// void Foo(IEnumerable&lt;string&gt; values)
     /// {
     ///   ThrowIfNull(values, nameof(values));
@@ -1072,13 +1185,17 @@ namespace Socket_Debugger.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(AttributeTargets.Parameter)]
-    public sealed class NoEnumerationAttribute : Attribute { }
+    public sealed class NoEnumerationAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Indicates that the marked parameter is a regular expression pattern.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class RegexPatternAttribute : Attribute { }
+    public sealed class RegexPatternAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// Prevents the Member Reordering feature from tossing members of the marked class.
@@ -1087,15 +1204,19 @@ namespace Socket_Debugger.Annotations
     /// The attribute must be mentioned in your member reordering patterns.
     /// </remarks>
     [AttributeUsage(
-      AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.Enum)]
-    public sealed class NoReorderAttribute : Attribute { }
+        AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.Enum)]
+    public sealed class NoReorderAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// XAML attribute. Indicates the type that has <c>ItemsSource</c> property and should be treated
     /// as <c>ItemsControl</c>-derived type, to enable inner items <c>DataContext</c> type resolve.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class XamlItemsControlAttribute : Attribute { }
+    public sealed class XamlItemsControlAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// XAML attribute. Indicates the property of some <c>BindingBase</c>-derived type, that
@@ -1107,7 +1228,9 @@ namespace Socket_Debugger.Annotations
     /// marked with the <see cref="XamlItemsControlAttribute"/> attribute.
     /// </remarks>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class XamlItemBindingOfItemsControlAttribute : Attribute { }
+    public sealed class XamlItemBindingOfItemsControlAttribute : Attribute
+    {
+    }
 
     /// <summary>
     /// XAML attribute. Indicates the property of some <c>Style</c>-derived type, that
@@ -1119,7 +1242,9 @@ namespace Socket_Debugger.Annotations
     /// marked with the <see cref="XamlItemsControlAttribute"/> attribute.
     /// </remarks>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class XamlItemStyleOfItemsControlAttribute : Attribute { }
+    public sealed class XamlItemStyleOfItemsControlAttribute : Attribute
+    {
+    }
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class AspChildControlTypeAttribute : Attribute
@@ -1136,13 +1261,19 @@ namespace Socket_Debugger.Annotations
     }
 
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Method)]
-    public sealed class AspDataFieldAttribute : Attribute { }
+    public sealed class AspDataFieldAttribute : Attribute
+    {
+    }
 
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Method)]
-    public sealed class AspDataFieldsAttribute : Attribute { }
+    public sealed class AspDataFieldsAttribute : Attribute
+    {
+    }
 
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class AspMethodPropertyAttribute : Attribute { }
+    public sealed class AspMethodPropertyAttribute : Attribute
+    {
+    }
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class AspRequiredAttributeAttribute : Attribute
@@ -1209,6 +1340,7 @@ namespace Socket_Debugger.Annotations
         {
             BaseType = baseType;
         }
+
         public RazorPageBaseTypeAttribute([NotNull] string baseType, string pageName)
         {
             BaseType = baseType;
@@ -1220,17 +1352,27 @@ namespace Socket_Debugger.Annotations
     }
 
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class RazorHelperCommonAttribute : Attribute { }
+    public sealed class RazorHelperCommonAttribute : Attribute
+    {
+    }
 
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class RazorLayoutAttribute : Attribute { }
+    public sealed class RazorLayoutAttribute : Attribute
+    {
+    }
 
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class RazorWriteLiteralMethodAttribute : Attribute { }
+    public sealed class RazorWriteLiteralMethodAttribute : Attribute
+    {
+    }
 
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class RazorWriteMethodAttribute : Attribute { }
+    public sealed class RazorWriteMethodAttribute : Attribute
+    {
+    }
 
     [AttributeUsage(AttributeTargets.Parameter)]
-    public sealed class RazorWriteMethodParameterAttribute : Attribute { }
+    public sealed class RazorWriteMethodParameterAttribute : Attribute
+    {
+    }
 }

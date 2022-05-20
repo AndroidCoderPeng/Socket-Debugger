@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Socket_Debugger.Model;
@@ -15,8 +16,9 @@ namespace Socket_Debugger.Views
         private ObservableCollection<ConnectionModel> _connectionModels;
         private ConnectionModel _selectedModel;
 
-        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        public MainWindow()
         {
+            InitializeComponent();
             // 初始化数据库
             SqLiteHelper.GetInstance().InitDataBase();
             _connectionModels = SqLiteHelper.GetInstance().QueryConnectionModelsByType(_selectedType);
@@ -43,20 +45,20 @@ namespace Socket_Debugger.Views
                 RightEmptyPanel.Visibility = Visibility.Collapsed;
             }
         }
-        
-        public MainWindow()
+
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
+            Console.WriteLine("MainWindow_OnLoaded");
         }
 
-        private void LeftListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LeftListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // if (!(LeftListView.SelectedItem is LeftFunctionModel model)) return;
-            // _selectedType = model.FunctionName.Contains("\r")
-            //     ? model.FunctionName.Replace("\r", "")
-            //     : model.FunctionName;
-            // _connectionModels = SqLiteHelper.GetInstance().QueryConnectionModelsByType(_selectedType);
+            if (!(LeftListBox.SelectedItem is LeftFunctionModel model)) return;
+            _selectedType = model.FunctionName;
+            // _connectionModels =
+            // SqLiteHelper.GetInstance().QueryConnectionModelsByType(_selectedType);
             // CenterListView.ItemsSource = _connectionModels;
+            LeftListBox.SelectedItem = null;
         }
 
         private void CenterListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

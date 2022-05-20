@@ -10,7 +10,7 @@
                     <ControlTemplate TargetType="{x:Type RadioButton}">
                         <Grid Background="Transparent">
                             <Border x:Name="BackgroundBorder" />
-                            <Border x:Name="ThickBorder" Margin="3 15"/>
+                            <Border x:Name="ThickBorder" Margin="3 15" />
                             <ContentPresenter />
                         </Grid>
 
